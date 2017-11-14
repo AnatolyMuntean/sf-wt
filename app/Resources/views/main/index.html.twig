@@ -12,7 +12,9 @@
     <h3>Guns:</h3>
     <ul>
         {% for gun in guns %}
-            <li>{{ gun.name }}</li>
+            <li>
+                <a href="{{ path('gun_page', {'gun': gun.id}) }}">{{ gun.name }}</a>
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}

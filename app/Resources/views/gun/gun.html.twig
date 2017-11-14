@@ -5,7 +5,6 @@
         <span>Tanks with same gun:</span>
         {% for tank in tanks %}
             <div>
-                <span>Name:</span>
                 <span>
                     <a href="{{ path('tank_page', {'tank': tank.id}) }}">{{ tank.name }}</a>
                 </span>
