@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h1>List of WWII tanks and guns</h1>
+    <h3>Tanks:</h3>
+    <ul>
+        {% for tank in tanks %}
+            <li>{{ tank.name }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Guns:</h3>
+    <ul>
+        {% for gun in guns %}
+            <li>{{ gun.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
