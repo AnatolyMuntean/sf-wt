@@ -24,6 +24,7 @@ class DefaultController extends Controller
         $guns = $entityManager->getRepository(Gun::class)->findAll();
 
         return $this->render('main/index.html.twig', [
+            'header' => 'List of WWII tanks and guns',
             'tanks' => $tanks,
             'guns' => $guns,
         ]);

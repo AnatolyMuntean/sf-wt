@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div>
+        <span>Armed with:</span>
+        {% for gun in guns %}
+            <div>
+                <span>Name:</span>
+                <span>
+                    <a href="{{ path('gun_page', {'gun': gun.id}) }}">{{ gun.name }}</a>
+                </span>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
