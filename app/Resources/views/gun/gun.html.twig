@@ -1,6 +1,26 @@
 {% extends "base.html.twig" %}
-
+{% block edit %}
+    <div>
+        <a href="{{ path('gun_edit', {'gun': gun.id}) }}">Edit</a>
+    </div>
+{% endblock %}
 {% block body %}
+    <div>
+        <span>Shell: </span>
+        <span>{{ gun.shell }}</span>
+    </div>
+    <div>
+        <span>Caliber (mm.): </span>
+        <span>{{ gun.caliber }}</span>
+    </div>
+    <div>
+        <span>Elevation (deg.): </span>
+        <span>{{ gun.elevationmin }}&deg; - {{ gun.elevationmax }}&deg;</span>
+    </div>
+    <div>
+        <span>Traverse (deg.):</span>
+        <span>{{ gun.traverse }}&deg;</span>
+    </div>
     <div>
         <span>Tanks with same gun:</span>
         {% for tank in tanks %}

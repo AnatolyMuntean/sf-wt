@@ -12,25 +12,56 @@ class TanksFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $tanks = [
-            'Panzer II' => ['2 cm KwK 30'],
-            'Tiger I' => ['KwK 36'],
-            'Tiger II' => ['KwK 43 L71'],
+            'Panzer II' => [
+                'guns' => ['2 cm KwK 30'],
+                'weight' => 9400,
+                'original_name' => 'Sd.Kfz. 121',
+            ],
+            'Tiger I' => [
+                'guns' => ['KwK 36'],
+                'weight' => 57000,
+                'original_name' => 'Sd.Kfz.181',
+            ],
+            'Tiger II' => [
+                'guns' => ['KwK 43 L71'],
+                'weight' => 70000,
+                'original_name' => 'Sd.Kfz. 182',
+            ],
             'Maus' => [
-                '7.5 cm KwK 37',
-                '12.8 cm Pak 44',
+                'guns' => [
+                    '7.5 cm KwK 37',
+                    '12.8 cm Pak 44',
+                ],
+                'weight' => 188900,
+                'original_name' => 'Sd.Kfz 205',
             ],
         ];
 
-        foreach ($tanks as $tankName => $gunNames) {
+        foreach ($tanks as $tankName => $tankProperties) {
             $tankEntity = new Tank();
             $tankEntity->setName($tankName);
 
-            foreach ($gunNames as $gunName) {
-                /** @var Gun $gunEntity */
-                $gunEntity = $this->getReference($gunName);
-                $tankEntity->addGun($gunEntity);
+            foreach ($tankProperties as $tankPropertyName => $tankPropertyValue) {
+                switch ($tankPropertyName) {
+                    case 'guns':
+                        foreach ($tankPropertyValue as $gunName) {
+                            /** @var Gun $gunEntity */
+                            $gunEntity = $this->getReference($gunName);
+                            $tankEntity->addGun($gunEntity);
+                        }
+                        break;
+                    case 'weight':
+                        $tankEntity->setWeight($tankPropertyValue);
+                        break;
+                    case 'original_name':
+                        $tankEntity->setOriginalName($tankPropertyValue);
+                        break;
+                }
             }
 
+
+
+            $this->addReference($tankName, $tankEntity);
             $manager->persist($tankEntity);
         }
 

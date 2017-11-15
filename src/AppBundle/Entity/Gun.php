@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Gun
@@ -34,6 +35,42 @@ class Gun
      * @ORM\ManyToMany(targetEntity="Tank", mappedBy="guns")
      */
     private $tank;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="shell", type="string", length=255)
+     */
+    private $shell;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="caliber", type="integer")
+     */
+    private $caliber;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="elevation_min", type="float")
+     */
+    private $elevation_min;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="elevation_max", type="float")
+     */
+    private $elevation_max;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="traverse", type="integer")
+     * @Assert\Range(min=0, max=360)
+     */
+    private $traverse;
 
     /**
      * Constructor
@@ -109,5 +146,125 @@ class Gun
     public function getTank()
     {
         return $this->tank;
+    }
+
+    /**
+     * Set shell
+     *
+     * @param string $shell
+     *
+     * @return Gun
+     */
+    public function setShell($shell)
+    {
+        $this->shell = $shell;
+
+        return $this;
+    }
+
+    /**
+     * Get shell
+     *
+     * @return string
+     */
+    public function getShell()
+    {
+        return $this->shell;
+    }
+
+    /**
+     * Set caliber
+     *
+     * @param integer $caliber
+     *
+     * @return Gun
+     */
+    public function setCaliber($caliber)
+    {
+        $this->caliber = $caliber;
+
+        return $this;
+    }
+
+    /**
+     * Get caliber
+     *
+     * @return integer
+     */
+    public function getCaliber()
+    {
+        return $this->caliber;
+    }
+
+    /**
+     * Set elevationMin
+     *
+     * @param float $elevationMin
+     *
+     * @return Gun
+     */
+    public function setElevationMin($elevationMin)
+    {
+        $this->elevation_min = $elevationMin;
+
+        return $this;
+    }
+
+    /**
+     * Get elevationMin
+     *
+     * @return float
+     */
+    public function getElevationMin()
+    {
+        return $this->elevation_min;
+    }
+
+    /**
+     * Set elevationMax
+     *
+     * @param float $elevationMax
+     *
+     * @return Gun
+     */
+    public function setElevationMax($elevationMax)
+    {
+        $this->elevation_max = $elevationMax;
+
+        return $this;
+    }
+
+    /**
+     * Get elevationMax
+     *
+     * @return float
+     */
+    public function getElevationMax()
+    {
+        return $this->elevation_max;
+    }
+
+    /**
+     * Set traverse
+     *
+     * @param integer $traverse
+     *
+     * @return Gun
+     */
+    public function setTraverse($traverse)
+    {
+        $this->traverse = $traverse;
+
+        return $this;
+    }
+
+    /**
+     * Get traverse
+     *
+     * @return integer
+     */
+    public function getTraverse()
+    {
+        return $this->traverse;
     }
 }

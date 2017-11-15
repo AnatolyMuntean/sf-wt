@@ -10,6 +10,7 @@
     <body>
         <span><a href="{{ path('homepage') }}">Home</a></span>
         <h1>{{ header }}</h1>
+        {% block edit %}{% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

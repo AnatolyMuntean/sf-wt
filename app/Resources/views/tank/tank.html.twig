@@ -1,5 +1,9 @@
 {% extends "base.html.twig" %}
-
+{% block edit %}
+<div>
+    <a href="{{ path('tank_edit', {'tank': tank.id}) }}">Edit</a>
+</div>
+{% endblock %}
 {% block body %}
     <div>
         <span>Armed with:</span>
@@ -11,4 +15,36 @@
             </div>
         {% endfor %}
     </div>
+    <div>
+        <span>Original name:</span>
+        <span>{{ tank.originalname }}</span>
+    </div>
+    <div>
+        <span>Produced (units):</span>
+        <span>{{ tank.production.count }}</span>
+    </div>
+    <div>
+        <span>Weight:</span>
+        <span>{{ tank.weight }} (kg.)</span>
+    </div>
+    <div>
+        <span>Size (mm.):</span>
+        <table border="1">
+            <tr>
+                <th>Height</th>
+                <th>Width</th>
+                <th>Length</th>
+                <th>Length w/ gun</th>
+                <th>Clearance</th>
+            </tr>
+            <tr>
+                <td>{{ tank.size.height }}</td>
+                <td>{{ tank.size.width }}</td>
+                <td>{{ tank.size.length }}</td>
+                <td>{{ tank.size.lengthwithgun }}</td>
+                <td>{{ tank.size.clearance }}</td>
+            </tr>
+        </table>
+    </div>
+
 {% endblock %}

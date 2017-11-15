@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Tank
@@ -34,6 +35,37 @@ class Tank
      * @ORM\ManyToMany(targetEntity="Gun", inversedBy="tank")
      */
     private $guns;
+
+    /**
+     * @var Size
+     *
+     * @ORM\ManyToOne(targetEntity="Size", inversedBy="tank")
+     * @Assert\Valid
+     */
+    private $size;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="weight", type="integer")
+     * @Assert\GreaterThan(0)
+     */
+    private $weight;
+
+    /**
+     * @var Production
+     *
+     * @ORM\ManyToOne(targetEntity="Production", inversedBy="tank")
+     * @Assert\Valid
+     */
+    private $production;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="original_name", type="string")
+     */
+    private $original_name;
 
     /**
      * Constructor
@@ -78,6 +110,54 @@ class Tank
     }
 
     /**
+     * Set weight
+     *
+     * @param integer $weight
+     *
+     * @return Tank
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
+
+        return $this;
+    }
+
+    /**
+     * Get weight
+     *
+     * @return integer
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
+     * Set originalName
+     *
+     * @param string $originalName
+     *
+     * @return Tank
+     */
+    public function setOriginalName($originalName)
+    {
+        $this->original_name = $originalName;
+
+        return $this;
+    }
+
+    /**
+     * Get originalName
+     *
+     * @return string
+     */
+    public function getOriginalName()
+    {
+        return $this->original_name;
+    }
+
+    /**
      * Add gun
      *
      * @param \AppBundle\Entity\Gun $gun
@@ -109,5 +189,53 @@ class Tank
     public function getGuns()
     {
         return $this->guns;
+    }
+
+    /**
+     * Set size
+     *
+     * @param \AppBundle\Entity\Size $size
+     *
+     * @return Tank
+     */
+    public function setSize(\AppBundle\Entity\Size $size = null)
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return \AppBundle\Entity\Size
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * Set production
+     *
+     * @param \AppBundle\Entity\Production $production
+     *
+     * @return Tank
+     */
+    public function setProduction(\AppBundle\Entity\Production $production = null)
+    {
+        $this->production = $production;
+
+        return $this;
+    }
+
+    /**
+     * Get production
+     *
+     * @return \AppBundle\Entity\Production
+     */
+    public function getProduction()
+    {
+        return $this->production;
     }
 }
