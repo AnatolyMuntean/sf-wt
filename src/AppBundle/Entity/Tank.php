@@ -39,7 +39,7 @@ class Tank
     /**
      * @var Size
      *
-     * @ORM\ManyToOne(targetEntity="Size", inversedBy="tank")
+     * @ORM\ManyToOne(targetEntity="Size", inversedBy="tank", cascade="persist")
      * @Assert\Valid
      */
     private $size;
@@ -55,7 +55,7 @@ class Tank
     /**
      * @var Production
      *
-     * @ORM\ManyToOne(targetEntity="Production", inversedBy="tank")
+     * @ORM\ManyToOne(targetEntity="Production", inversedBy="tank", cascade="persist")
      * @Assert\Valid
      */
     private $production;

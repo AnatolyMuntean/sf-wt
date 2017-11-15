@@ -16,7 +16,7 @@ class SizeFixtures extends Fixture
                 'height' => 1990,
                 'width' => 2223,
                 'length' => 4810,
-                'length_w_gun' => 4810,
+                'length_w_gun' => 0,
                 'clearance' => 345,
             ],
             'Tiger I' => [

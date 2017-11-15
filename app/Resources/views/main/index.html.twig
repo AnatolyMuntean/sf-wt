@@ -8,6 +8,9 @@
                 <a href="{{ path('tank_page', {'tank': tank.id}) }}">{{ tank.name }}</a>
             </li>
         {% endfor %}
+        <li>
+            <a href="{{ path('tank_add') }}">... New gun</a>
+        </li>
     </ul>
     <h3>Guns:</h3>
     <ul>
@@ -16,5 +19,8 @@
                 <a href="{{ path('gun_page', {'gun': gun.id}) }}">{{ gun.name }}</a>
             </li>
         {% endfor %}
+        <li>
+            <a href="{{ path('gun_add') }}">... New tank</a>
+        </li>
     </ul>
 {% endblock %}

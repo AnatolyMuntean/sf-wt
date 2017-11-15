@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 class TankController extends Controller
 {
     /**
-     * @Route("/tank/{tank}", name="tank_page")
+     * @Route("/tank/{tank}/view", name="tank_page")
      */
     public function tankAction(Request $request, Tank $tank)
     {
@@ -21,6 +21,35 @@ class TankController extends Controller
             'header' => $tank->getName(),
             'tank' => $tank,
             'guns' => $tank->getGuns(),
+        ]);
+    }
+
+    /**
+     * @Route("/tank/add", name="tank_add")
+     * @Method({"GET", "POST"})
+     */
+    public function tankAddAction(Request $request)
+    {
+        $tank = new Tank();
+        $allGuns = $this->getDoctrine()->getRepository(Gun::class)->findAll();
+        $form = $this->createForm(TankType::class, $tank, [
+            'all_guns' => $allGuns,
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($tank);
+            $em->flush();
+
+            return $this->redirectToRoute('tank_page', [
+                'tank' => $tank->getId(),
+            ]);
+        }
+
+        return $this->render('tank/tank_edit.html.twig', [
+            'header' => 'Add new tank',
+            'form' => $form->createView(),
         ]);
     }
 

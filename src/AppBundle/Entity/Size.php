@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="sizes")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SizeRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Size
 {
@@ -236,5 +237,16 @@ class Size
     public function getTank()
     {
         return $this->tank;
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function setLengthWithGunDefaultValue()
+    {
+        if (empty($this->getLengthWithGun()) || $this->lengthWithGun < $this->length) {
+            $this->setLengthWithGun($this->length);
+        }
     }
 }

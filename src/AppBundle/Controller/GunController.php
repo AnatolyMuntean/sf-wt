@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 class GunController extends Controller
 {
     /**
-     * @Route("/gun/{gun}", name="gun_page")
+     * @Route("/gun/{gun}/view", name="gun_page")
      */
     public function gunAction(Request $request, Gun $gun)
     {
@@ -28,10 +28,36 @@ class GunController extends Controller
     }
 
     /**
+     * @Route("/gun/add", name="gun_add")
+     * @Method({"GET", "POST"})
+     */
+    public function gunAddAction(Request $request)
+    {
+        $gun = new Gun();
+        $form = $this->createForm(GunType::class, $gun);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($gun);
+            $em->flush();
+
+            return $this->redirectToRoute('gun_page', [
+               'gun' => $gun->getId(),
+            ]);
+        }
+
+        return $this->render('gun/gun_edit.html.twig', [
+            'header' => 'Add new gun',
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/gun/{gun}/edit", name="gun_edit")
      * @Method({"GET", "POST"})
      */
-    public function getEditAction(Request $request, Gun $gun)
+    public function gunEditAction(Request $request, Gun $gun)
     {
         $form = $this->createForm(GunType::class, $gun);
         $form->handleRequest($request);
