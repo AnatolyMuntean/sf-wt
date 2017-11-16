@@ -83,7 +83,7 @@ class Tank
     private $hull_armor;
 
     /**
-     * @var ArmorHull
+     * @var ArmorTurret
      *
      * @ORM\ManyToOne(targetEntity="ArmorTurret", inversedBy="tank");
      */
@@ -294,5 +294,53 @@ class Tank
     public function getEngines()
     {
         return $this->engines;
+    }
+
+    /**
+     * Set hullArmor
+     *
+     * @param \AppBundle\Entity\ArmorHull $hullArmor
+     *
+     * @return Tank
+     */
+    public function setHullArmor(\AppBundle\Entity\ArmorHull $hullArmor = null)
+    {
+        $this->hull_armor = $hullArmor;
+
+        return $this;
+    }
+
+    /**
+     * Get hullArmor
+     *
+     * @return \AppBundle\Entity\ArmorHull
+     */
+    public function getHullArmor()
+    {
+        return $this->hull_armor;
+    }
+
+    /**
+     * Set turretArmor
+     *
+     * @param \AppBundle\Entity\ArmorTurret $turretArmor
+     *
+     * @return Tank
+     */
+    public function setTurretArmor(\AppBundle\Entity\ArmorTurret $turretArmor = null)
+    {
+        $this->turret_armor = $turretArmor;
+
+        return $this;
+    }
+
+    /**
+     * Get turretArmor
+     *
+     * @return \AppBundle\Entity\ArmorTurret
+     */
+    public function getTurretArmor()
+    {
+        return $this->turret_armor;
     }
 }
