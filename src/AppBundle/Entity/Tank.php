@@ -76,6 +76,20 @@ class Tank
     private $engines;
 
     /**
+     * @var ArmorHull
+     *
+     * @ORM\ManyToOne(targetEntity="ArmorHull", inversedBy="tank");
+     */
+    private $hull_armor;
+
+    /**
+     * @var ArmorHull
+     *
+     * @ORM\ManyToOne(targetEntity="ArmorTurret", inversedBy="tank");
+     */
+    private $turret_armor;
+
+    /**
      * Constructor
      */
     public function __construct()
