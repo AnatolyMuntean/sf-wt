@@ -1,8 +1,9 @@
 {% extends "base.html.twig" %}
 {% block edit %}
-<div>
-    <a href="{{ path('tank_edit', {'tank': tank.id}) }}">Edit</a>
-</div>
+    <div>
+        <a href="{{ path('tank_edit', {'tank': tank.id}) }}">Edit</a>
+        <a href="{{ path('tank_compare_add', {'tank': tank.id}) }}">Compare</a>
+    </div>
 {% endblock %}
 {% block body %}
     <div>
@@ -56,5 +57,11 @@
             </tr>
         </table>
     </div>
+    {% if tank.description %}
+        <div>
+            <span>Description:</span>
+            <span>{{ tank.description }}</span>
+        </div>
+    {% endif %}
 
 {% endblock %}

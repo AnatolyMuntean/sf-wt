@@ -18,9 +18,9 @@ class TankType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('weight', IntegerType::class)
-            ->add('original_name', TextType::class)
+            ->add('name')
+            ->add('weight')
+            ->add('original_name')
             ->add('production', ProductionType::class)
             ->add('guns', EntityType::class, [
                 'multiple' => true,
@@ -41,6 +41,7 @@ class TankType extends AbstractType
                 'class' => Engine::class,
             ])
             ->add('size', SizeType::class)
+            ->add('description')
             ->add('Save', SubmitType::class, [
                 'label' => 'Save',
             ]);

@@ -16,12 +16,13 @@ class GunType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('shell', TextType::class)
-            ->add('caliber', IntegerType::class)
-            ->add('elevationmin', NumberType::class)
-            ->add('elevationmax', NumberType::class)
-            ->add('traverse', IntegerType::class)
+            ->add('name')
+            ->add('shell')
+            ->add('caliber')
+            ->add('elevationmin')
+            ->add('elevationmax')
+            ->add('traverse')
+            ->add('description')
             ->add('Save', SubmitType::class, [
                 'label' => 'Save',
             ]);

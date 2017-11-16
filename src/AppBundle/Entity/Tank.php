@@ -90,6 +90,13 @@ class Tank
     private $turret_armor;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -342,5 +349,29 @@ class Tank
     public function getTurretArmor()
     {
         return $this->turret_armor;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Tank
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

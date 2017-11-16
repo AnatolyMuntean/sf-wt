@@ -58,6 +58,13 @@ class Engine
     private $type;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -203,5 +210,29 @@ class Engine
     public function getTank()
     {
         return $this->tank;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Engine
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

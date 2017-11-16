@@ -2,17 +2,32 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.css') }}">
     </head>
     <body>
-        <span><a href="{{ path('homepage') }}">Home</a></span>
-        <h1>{{ header }}</h1>
-        {% block edit %}{% endblock %}
-        {% block body %}{% endblock %}
+        <div class="container">
+            <span>
+                <a href="{{ path('homepage') }}">Home</a>
+            </span>
+            <h1>{{ header }}</h1>
+            {% for label, messages  in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}">
+                        <span>{{ message }}</span>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% block edit %}{% endblock %}
+            {% block body %}{% endblock %}
+        </div>
         {% block javascripts %}{% endblock %}
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     </body>
 </html>

@@ -21,6 +21,12 @@
         <span>Traverse (deg.):</span>
         <span>{{ gun.traverse }}&deg;</span>
     </div>
+    {% if gun.description %}
+        <div>
+            <span>Description:</span>
+            <span>{{ gun.description }}</span>
+        </div>
+    {% endif %}
     <div>
         <span>Tanks with same gun:</span>
         {% for tank in tanks %}

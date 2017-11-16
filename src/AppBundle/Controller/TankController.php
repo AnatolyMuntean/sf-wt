@@ -86,5 +86,34 @@ class TankController extends Controller
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/tank/{tank}/compare", name="tank_compare_add")
+     */
+    public function tankAddToCompareAction(Request $request, Tank $tank)
+    {
+        $key = 'compare-'.$tank->getName();
+        $session = $request->getSession();
+
+        if (!$session->has($key)) {
+            $session->set($key, $tank->getName());
+            $this->addFlash('success', 'Added "'.$tank->getName().'" to comparison.');
+        }
+        else {
+            $this->addFlash('warning', 'This tank already added to comparison.');
+        }
+
+        return $this->redirectToRoute('tank_page', [
+            'tank' => $tank->getId(),
+        ]);
+    }
+
+    /**
+     * @Route("/tank/compare", name="tank_compare")
+     */
+    public function tankCompareAction(Request $request)
+    {
+
+    }
 }
 

@@ -17,6 +17,12 @@
         <span>Type: </span>
         <span>{{ engine.type }}</span>
     </div>
+    {% if engine.description %}
+        <div>
+            <span>Description:</span>
+            <span>{{ engine.description }}</span>
+        </div>
+    {% endif %}
     <div>
         <span>Tanks with same engine:</span>
         {% for tank in tanks %}

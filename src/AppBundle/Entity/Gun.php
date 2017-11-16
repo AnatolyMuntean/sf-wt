@@ -73,6 +73,13 @@ class Gun
     private $traverse;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -266,5 +273,29 @@ class Gun
     public function getTraverse()
     {
         return $this->traverse;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Gun
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

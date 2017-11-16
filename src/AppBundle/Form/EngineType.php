@@ -17,6 +17,7 @@ class EngineType extends AbstractType
             ->add('horsepower')
             ->add('displacement')
             ->add('type')
+            ->add('description')
             ->add('submit', SubmitType::class, [
                 'label' => 'Submit'
             ]);
