@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class TankController extends Controller
 {
+    const COMPARE_TANKS = 'compare-tanks';
+
     /**
      * @Route("/tank/{tank}/view", name="tank_page")
      */
@@ -92,11 +94,16 @@ class TankController extends Controller
      */
     public function tankAddToCompareAction(Request $request, Tank $tank)
     {
-        $key = 'compare-'.$tank->getName();
         $session = $request->getSession();
 
-        if (!$session->has($key)) {
-            $session->set($key, $tank->getName());
+        if (!$session->has(self::COMPARE_TANKS)) {
+            $session->set(self::COMPARE_TANKS, []);
+        }
+
+        $comparedTanks = $session->get(self::COMPARE_TANKS);
+        if (!array_key_exists($tank->getId(), $comparedTanks)) {
+            $comparedTanks[$tank->getId()] = $tank->getName();
+            $session->set(self::COMPARE_TANKS, $comparedTanks);
             $this->addFlash('success', 'Added "'.$tank->getName().'" to comparison.');
         }
         else {
@@ -113,7 +120,20 @@ class TankController extends Controller
      */
     public function tankCompareAction(Request $request)
     {
+        $session = $request->getSession();
+        $comparedTanks = $session->get(self::COMPARE_TANKS);
 
+        $header = implode(' vs ', array_values($comparedTanks));
+        $tanks = $this->getDoctrine()->getManager()->getRepository(Tank::class)
+            ->createQueryBuilder('t')
+            ->where('t.id IN (:ids)')
+            ->setParameter('ids', array_keys($comparedTanks))
+            ->getQuery()
+            ->execute();
+
+        return $this->render('tank/tank_compare.html.twig', [
+            'header' => 'Comparing: '.$header,
+        ]);
     }
 }
 
