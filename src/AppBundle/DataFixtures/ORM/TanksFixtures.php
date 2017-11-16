@@ -2,6 +2,7 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Entity\Engine;
 use AppBundle\Entity\Gun;
 use AppBundle\Entity\Tank;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -16,16 +17,19 @@ class TanksFixtures extends Fixture
                 'guns' => ['2 cm KwK 30'],
                 'weight' => 9400,
                 'original_name' => 'Sd.Kfz. 121',
+                'engine' => 'Maybach HL62TR',
             ],
             'Tiger I' => [
                 'guns' => ['KwK 36'],
                 'weight' => 57000,
                 'original_name' => 'Sd.Kfz.181',
+                'engine' => 'Maybach HL230',
             ],
             'Tiger II' => [
                 'guns' => ['KwK 43 L71'],
                 'weight' => 70000,
                 'original_name' => 'Sd.Kfz. 182',
+                'engine' => 'Maybach HL230 P30',
             ],
             'Maus' => [
                 'guns' => [
@@ -34,6 +38,7 @@ class TanksFixtures extends Fixture
                 ],
                 'weight' => 188900,
                 'original_name' => 'Sd.Kfz 205',
+                'engine' => 'MB 517',
             ],
         ];
 
@@ -50,6 +55,11 @@ class TanksFixtures extends Fixture
                             $tankEntity->addGun($gunEntity);
                         }
                         break;
+                    case 'engine':
+                        /** @var Engine $engineEntity */
+                        $engineEntity = $this->getReference($tankPropertyValue);
+                        $tankEntity->addEngine($engineEntity);
+                        break;
                     case 'weight':
                         $tankEntity->setWeight($tankPropertyValue);
                         break;
@@ -58,8 +68,6 @@ class TanksFixtures extends Fixture
                         break;
                 }
             }
-
-
 
             $this->addReference($tankName, $tankEntity);
             $manager->persist($tankEntity);
@@ -72,6 +80,7 @@ class TanksFixtures extends Fixture
     {
         return [
             GunsFixtures::class,
+            EnginesFixtures::class,
         ];
     }
 }

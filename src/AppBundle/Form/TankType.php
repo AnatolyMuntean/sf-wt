@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Engine;
 use AppBundle\Entity\Gun;
 use AppBundle\Entity\Tank;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -30,6 +31,15 @@ class TankType extends AbstractType
                 },
                 'class' => Gun::class,
             ])
+            ->add('engines', EntityType::class, [
+                'multiple' => true,
+                'choices' => $options['all_engines'],
+                'choice_label' => function ($engine) {
+                    /** @var Engine $engine */
+                    return $engine->getName();
+                },
+                'class' => Engine::class,
+            ])
             ->add('size', SizeType::class)
             ->add('Save', SubmitType::class, [
                 'label' => 'Save',
@@ -40,7 +50,11 @@ class TankType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Tank::class,
-            'all_guns' => [],
+        ]);
+
+        $resolver->setRequired([
+            'all_guns',
+            'all_engines',
         ]);
     }
 }

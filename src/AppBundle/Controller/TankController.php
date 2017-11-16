@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Engine;
 use AppBundle\Entity\Gun;
 use AppBundle\Entity\Tank;
 use AppBundle\Form\TankType;
@@ -20,7 +21,6 @@ class TankController extends Controller
         return $this->render('tank/tank.html.twig', [
             'header' => $tank->getName(),
             'tank' => $tank,
-            'guns' => $tank->getGuns(),
         ]);
     }
 
@@ -30,10 +30,13 @@ class TankController extends Controller
      */
     public function tankAddAction(Request $request)
     {
+        $doctrine = $this->getDoctrine();
         $tank = new Tank();
-        $allGuns = $this->getDoctrine()->getRepository(Gun::class)->findAll();
+        $allGuns = $doctrine->getRepository(Gun::class)->findAll();
+        $allEngines = $doctrine->getRepository(Engine::class)->findAll();
         $form = $this->createForm(TankType::class, $tank, [
             'all_guns' => $allGuns,
+            'all_engines' => $allEngines,
         ]);
         $form->handleRequest($request);
 
@@ -59,9 +62,12 @@ class TankController extends Controller
      */
     public function tankEditAction(Request $request, Tank $tank)
     {
-        $allGuns = $this->getDoctrine()->getRepository(Gun::class)->findAll();
+        $doctrine = $this->getDoctrine();
+        $allGuns = $doctrine->getRepository(Gun::class)->findAll();
+        $allEngines = $doctrine->getRepository(Engine::class)->findAll();
         $form = $this->createForm(TankType::class, $tank, [
             'all_guns' => $allGuns,
+            'all_engines' => $allEngines,
         ]);
         $form->handleRequest($request);
 
