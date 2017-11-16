@@ -16,7 +16,7 @@ class TankController extends Controller
     /**
      * @Route("/tank/{tank}/view", name="tank_page")
      */
-    public function tankAction(Request $request, Tank $tank)
+    public function tankViewAction(Request $request, Tank $tank)
     {
         return $this->render('tank/tank.html.twig', [
             'header' => $tank->getName(),

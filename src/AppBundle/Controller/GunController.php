@@ -15,10 +15,10 @@ class GunController extends Controller
     /**
      * @Route("/gun/{gun}/view", name="gun_page")
      */
-    public function gunAction(Request $request, Gun $gun)
+    public function gunViewAction(Request $request, Gun $gun)
     {
         $tanks = $this->get('doctrine')->getRepository(Tank::class)
-            ->findAllArmedWith($gun);
+            ->findAllWithSameGun($gun);
 
         return $this->render('gun/gun.html.twig', [
             'header' => $gun->getName(),

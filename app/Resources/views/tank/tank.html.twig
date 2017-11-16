@@ -20,7 +20,7 @@
         {% for engine in tank.engines %}
             <div>
                 <span>
-                    <a href="#">{{ engine.name }}</a>
+                    <a href="{{ path('engine_page', {'engine': engine.id}) }}">{{ engine.name }}</a>
                 </span>
             </div>
         {% endfor %}

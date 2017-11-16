@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+{% block edit %}
+    <div>
+        <a href="{{ path('engine_edit', {'engine': engine.id}) }}">Edit</a>
+    </div>
+{% endblock %}
+{% block body %}
+    <div>
+        <span>Horsepower (hp): </span>
+        <span>{{ engine.horsepower }}</span>
+    </div>
+    <div>
+        <span>Displacement (cm&sup3;): </span>
+        <span>{{ engine.displacement }}</span>
+    </div>
+    <div>
+        <span>Type: </span>
+        <span>{{ engine.type }}</span>
+    </div>
+    <div>
+        <span>Tanks with same engine:</span>
+        {% for tank in tanks %}
+            <div>
+                <span>
+                    <a href="{{ path('tank_page', {'tank': tank.id}) }}">{{ tank.name }}</a>
+                </span>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
