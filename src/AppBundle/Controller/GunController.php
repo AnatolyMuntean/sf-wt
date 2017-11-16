@@ -20,7 +20,7 @@ class GunController extends Controller
         $tanks = $this->get('doctrine')->getRepository(Tank::class)
             ->findAllWithSameGun($gun);
 
-        return $this->render('gun/gun.html.twig', [
+        return $this->render('gun/gun_view.html.twig', [
             'header' => $gun->getName(),
             'gun' => $gun,
             'tanks' => $tanks,

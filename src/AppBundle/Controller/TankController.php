@@ -20,7 +20,7 @@ class TankController extends Controller
      */
     public function tankViewAction(Request $request, Tank $tank)
     {
-        return $this->render('tank/tank.html.twig', [
+        return $this->render('tank/tank_view.html.twig', [
             'header' => $tank->getName(),
             'tank' => $tank,
         ]);

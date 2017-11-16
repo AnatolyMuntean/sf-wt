@@ -21,7 +21,7 @@ class EngineController extends Controller
         $tanks = $doctrine->getRepository(Tank::class)
             ->findAllWithSameEngine($engine);
 
-        return $this->render('engine/engine.html.twig', [
+        return $this->render('engine/engine_view.html.twig', [
             'header' => $engine->getName(),
             'engine' => $engine,
             'tanks' => $tanks,
