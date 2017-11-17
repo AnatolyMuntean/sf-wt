@@ -70,10 +70,10 @@ class Tank
     /**
      * @var Engine
      *
-     * @ORM\ManyToMany(targetEntity="Engine", inversedBy="tank")
+     * @ORM\ManyToOne(targetEntity="Engine", inversedBy="tank")
      * @Assert\Valid
      */
-    private $engines;
+    private $engine;
 
     /**
      * @var ArmorHull
@@ -102,7 +102,6 @@ class Tank
     public function __construct()
     {
         $this->guns = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->engines = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -276,31 +275,21 @@ class Tank
      *
      * @return Tank
      */
-    public function addEngine(\AppBundle\Entity\Engine $engine)
+    public function setEngine(\AppBundle\Entity\Engine $engine)
     {
-        $this->engines[] = $engine;
+        $this->engine = $engine;
 
         return $this;
     }
 
     /**
-     * Remove engine
-     *
-     * @param \AppBundle\Entity\Engine $engine
-     */
-    public function removeEngine(\AppBundle\Entity\Engine $engine)
-    {
-        $this->engines->removeElement($engine);
-    }
-
-    /**
      * Get engine
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \AppBundle\Entity\Engine
      */
-    public function getEngines()
+    public function getEngine()
     {
-        return $this->engines;
+        return $this->engine;
     }
 
     /**

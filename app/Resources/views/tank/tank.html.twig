@@ -1,0 +1,61 @@
+<div>
+    <span>Name:</span>
+    <span>{{ tank.name }}</span>
+</div>
+<div>
+    <span>Armed with:</span>
+    {% for gun in tank.guns %}
+        <div>
+                <span>
+                    <a href="{{ path('gun_page', {'gun': gun.id}) }}">{{ gun.name }}</a>
+                </span>
+        </div>
+    {% endfor %}
+</div>
+<div>
+    <span>Engine:</span>
+    <span>
+        <a href="{{ path('engine_page', {'engine': tank.engine.id}) }}">{{ tank.engine.name }}</a>
+    </span>
+</div>
+<div>
+    <span>HP/t (ratio): </span>
+    <span>~{{ tank.engine.horsepower // (tank.weight / 1000) }}</span>
+</div>
+<div>
+    <span>Original name:</span>
+    <span>{{ tank.originalname }}</span>
+</div>
+<div>
+    <span>Produced (units):</span>
+    <span>{{ tank.production.count }}</span>
+</div>
+<div>
+    <span>Weight:</span>
+    <span>{{ tank.weight / 1000 }} (t.)</span>
+</div>
+<div>
+    <span>Size (mm.):</span>
+    <table class="table table-bordered">
+        <tr>
+            <th>Height</th>
+            <th>Width</th>
+            <th>Length</th>
+            <th>Length w/ gun</th>
+            <th>Clearance</th>
+        </tr>
+        <tr>
+            <td>{{ tank.size.height }}</td>
+            <td>{{ tank.size.width }}</td>
+            <td>{{ tank.size.length }}</td>
+            <td>{{ tank.size.lengthwithgun }}</td>
+            <td>{{ tank.size.clearance }}</td>
+        </tr>
+    </table>
+</div>
+{% if tank.description %}
+    <div>
+        <span>Description:</span>
+        <span>{{ tank.description }}</span>
+    </div>
+{% endif %}

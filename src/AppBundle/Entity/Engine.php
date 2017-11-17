@@ -23,7 +23,7 @@ class Engine
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tank", mappedBy="engines")
+     * @ORM\OneToMany(targetEntity="Tank", mappedBy="engine")
      */
     private $tank;
 

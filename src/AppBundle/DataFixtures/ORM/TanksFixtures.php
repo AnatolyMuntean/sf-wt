@@ -58,7 +58,7 @@ class TanksFixtures extends Fixture
                     case 'engine':
                         /** @var Engine $engineEntity */
                         $engineEntity = $this->getReference($tankPropertyValue);
-                        $tankEntity->addEngine($engineEntity);
+                        $tankEntity->setEngine($engineEntity);
                         break;
                     case 'weight':
                         $tankEntity->setWeight($tankPropertyValue);
@@ -80,7 +80,7 @@ class TanksFixtures extends Fixture
     {
         return [
             GunsFixtures::class,
-            EnginesFixtures::class,
+            EngineFixtures::class,
         ];
     }
 }

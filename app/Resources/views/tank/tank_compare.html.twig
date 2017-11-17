@@ -1,1 +1,21 @@
 {% extends "base.html.twig" %}
+
+{% block body %}
+
+    {% if tank_views|length > 0 %}
+        <div class="row">
+            {% for tank_view in tank_views %}
+                <div class="col-sm-4">
+                    {{ tank_view|raw }}
+                </div>
+            {% endfor %}
+        </div>
+        <div>
+            <a href="{{ path('tank_compare_clear') }}">Clear comparison</a>
+        </div>
+    {% else %}
+        <div class="alert alert-warning">
+            <span>Nothing to compare</span>
+        </div>
+    {% endif %}
+{% endblock %}

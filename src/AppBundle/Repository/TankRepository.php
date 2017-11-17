@@ -29,7 +29,7 @@ class TankRepository extends \Doctrine\ORM\EntityRepository
     public function findAllWithSameEngine(Engine $engine)
     {
         $tanks = $this->createQueryBuilder('t')
-            ->join('t.engines', 'te')
+            ->join('t.engine', 'te')
             ->where('te.id = :engine_id')
             ->setParameter('engine_id', $engine->getId())
             ->getQuery()
