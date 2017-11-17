@@ -58,11 +58,19 @@ class Gun
     private $description;
 
     /**
+     * @var Penetration
+     *
+     * @ORM\OneToMany(targetEntity="Penetration", mappedBy="gun")
+     */
+    private $penetration_data;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->tank = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->penetration_data = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -203,5 +211,39 @@ class Gun
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Add penetrationDatum
+     *
+     * @param \AppBundle\Entity\Penetration $penetrationDatum
+     *
+     * @return Gun
+     */
+    public function addPenetrationDatum(\AppBundle\Entity\Penetration $penetrationDatum)
+    {
+        $this->penetration_data[] = $penetrationDatum;
+
+        return $this;
+    }
+
+    /**
+     * Remove penetrationDatum
+     *
+     * @param \AppBundle\Entity\Penetration $penetrationDatum
+     */
+    public function removePenetrationDatum(\AppBundle\Entity\Penetration $penetrationDatum)
+    {
+        $this->penetration_data->removeElement($penetrationDatum);
+    }
+
+    /**
+     * Get penetrationData
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPenetrationData()
+    {
+        return $this->penetration_data;
     }
 }

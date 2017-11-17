@@ -65,6 +65,14 @@ class GunsFixtures extends Fixture
                     case 'caliber':
                         $gunEntity->setCaliber($gunPropertyValue);
                         break;
+                    case 'elevation_min':
+                        $gunEntity->setElevationMin($gunPropertyValue);
+                        break;
+                    case 'elevation_max':
+                        $gunEntity->setElevationMax($gunPropertyValue);
+                        break;
+                    case 'traverse':
+                        $gunEntity->setTraverse($gunPropertyValue);
                 }
             }
 
