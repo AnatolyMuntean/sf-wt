@@ -2,35 +2,62 @@
 
 {% block body %}
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Tanks</h3>
+                    <h3 class="panel-title">German</h3>
                 </div>
                 <div class="panel-body">
-                    <ul>
-                        {% for tank in tanks %}
-                            <li>
-                                <a href="{{ path('tank_page', {'tank': tank.id}) }}">{{ tank.name }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Guns</h3>
-                </div>
-                <div class="panel-body">
-                    <ul>
-                        {% for gun in guns %}
-                            <li>
-                                <a href="{{ path('gun_page', {'gun': gun.id}) }}">{{ gun.name }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Tanks</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <ul>
+                                        {% for tank in tanks %}
+                                            <li>
+                                                <a href="{{ path('tank_page', {'tank': tank.id}) }}">{{ tank.name }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Guns</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <ul>
+                                        {% for gun in guns %}
+                                            <li>
+                                                <a href="{{ path('gun_page', {'gun': gun.id}) }}">{{ gun.name }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Shells</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <ul>
+                                        {% for shell in shells %}
+                                            <li>
+                                                <a href="#">{{ shell.name }} ({{ shell.abbreviation }})</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
