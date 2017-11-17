@@ -19,9 +19,6 @@ class GunType extends AbstractType
             ->add('name')
             ->add('shell')
             ->add('caliber')
-            ->add('elevationmin')
-            ->add('elevationmax')
-            ->add('traverse')
             ->add('description')
             ->add('Save', SubmitType::class, [
                 'label' => 'Save',

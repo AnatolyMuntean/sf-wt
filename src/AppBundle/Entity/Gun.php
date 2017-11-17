@@ -51,28 +51,6 @@ class Gun
     private $caliber;
 
     /**
-     * @var float
-     *
-     * @ORM\Column(name="elevation_min", type="float")
-     */
-    private $elevation_min;
-
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="elevation_max", type="float")
-     */
-    private $elevation_max;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="traverse", type="integer")
-     * @Assert\Range(min=0, max=360)
-     */
-    private $traverse;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="description", type="text", nullable=true)
@@ -201,78 +179,6 @@ class Gun
     public function getCaliber()
     {
         return $this->caliber;
-    }
-
-    /**
-     * Set elevationMin
-     *
-     * @param float $elevationMin
-     *
-     * @return Gun
-     */
-    public function setElevationMin($elevationMin)
-    {
-        $this->elevation_min = $elevationMin;
-
-        return $this;
-    }
-
-    /**
-     * Get elevationMin
-     *
-     * @return float
-     */
-    public function getElevationMin()
-    {
-        return $this->elevation_min;
-    }
-
-    /**
-     * Set elevationMax
-     *
-     * @param float $elevationMax
-     *
-     * @return Gun
-     */
-    public function setElevationMax($elevationMax)
-    {
-        $this->elevation_max = $elevationMax;
-
-        return $this;
-    }
-
-    /**
-     * Get elevationMax
-     *
-     * @return float
-     */
-    public function getElevationMax()
-    {
-        return $this->elevation_max;
-    }
-
-    /**
-     * Set traverse
-     *
-     * @param integer $traverse
-     *
-     * @return Gun
-     */
-    public function setTraverse($traverse)
-    {
-        $this->traverse = $traverse;
-
-        return $this;
-    }
-
-    /**
-     * Get traverse
-     *
-     * @return integer
-     */
-    public function getTraverse()
-    {
-        return $this->traverse;
     }
 
     /**
