@@ -6,9 +6,12 @@ use AppBundle\Entity\Engine;
 use AppBundle\Entity\Gun;
 use AppBundle\Entity\Tank;
 use AppBundle\Form\TankType;
+use AppBundle\Services\FileUploaderService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 
 class TankController extends Controller
@@ -75,10 +78,8 @@ class TankController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Tank $tank */
-            $tank = $form->getData();
-
             $this->getDoctrine()->getManager()->flush();
+
             return $this->redirectToRoute('tank_page', [
                 'tank' => $tank->getId(),
             ]);

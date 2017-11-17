@@ -7,6 +7,7 @@ use AppBundle\Entity\Gun;
 use AppBundle\Entity\Tank;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -31,8 +32,8 @@ class TankType extends AbstractType
                 },
                 'class' => Gun::class,
             ])
-            ->add('engines', EntityType::class, [
-                'multiple' => true,
+            ->add('engine', EntityType::class, [
+                'multiple' => false,
                 'choices' => $options['all_engines'],
                 'choice_label' => function ($engine) {
                     /** @var Engine $engine */
@@ -42,6 +43,9 @@ class TankType extends AbstractType
             ])
             ->add('size', SizeType::class)
             ->add('description')
+            ->add('imageFile', FileType::class, [
+                'required' => false,
+            ])
             ->add('Save', SubmitType::class, [
                 'label' => 'Save',
             ]);

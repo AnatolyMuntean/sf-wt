@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Gun;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -20,6 +21,7 @@ class GunType extends AbstractType
             ->add('shell')
             ->add('caliber')
             ->add('description')
+            ->add('image', FileType::class)
             ->add('Save', SubmitType::class, [
                 'label' => 'Save',
             ]);

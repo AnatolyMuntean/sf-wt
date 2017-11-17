@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -11,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="guns")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\GunRepository")
  */
-class Gun
+class Gun implements UploadableInterface
 {
     /**
      * @var int
@@ -63,6 +64,21 @@ class Gun
      * @ORM\OneToMany(targetEntity="Penetration", mappedBy="gun")
      */
     private $penetration_data;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", nullable=true)
+     * @Assert\File(mimeTypes={"image/jpeg", "image/png"})
+     */
+    private $image;
+
+    /**
+     * @var File
+     *
+     * @Assert\Image()
+     */
+    private $imageFile;
 
     /**
      * Constructor
@@ -245,5 +261,45 @@ class Gun
     public function getPenetrationData()
     {
         return $this->penetration_data;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set image
+     *
+     * @param File $imageFile
+     */
+    public function setImageFile($imageFile)
+    {
+        $this->imageFile = $imageFile;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 }
