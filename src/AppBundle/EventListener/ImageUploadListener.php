@@ -32,19 +32,6 @@ class ImageUploadListener
         $this->uploadImage($entity);
     }
 
-    public function postLoad(LifecycleEventArgs $args)
-    {
-        $entity = $args->getEntity();
-
-        if (!$entity instanceof UploadableInterface) {
-            return;
-        }
-
-        if ($entity->getImage()) {
-            $entity->setImageFile(new File($this->fileUploader->getUploadsDirectory().'/'.$entity->getImage()));
-        }
-    }
-
     public function uploadImage($entity)
     {
         if (!$entity instanceof UploadableInterface) {
