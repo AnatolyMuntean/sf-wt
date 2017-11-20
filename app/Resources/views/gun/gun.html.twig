@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div>
+            <span>Shell: </span>
+            <span>{{ gun.shell }}</span>
+        </div>
+        <div>
+            <span>Caliber (mm.): </span>
+            <span>{{ gun.caliber }}</span>
+        </div>
+        <div>
+            <span>Ammo:</span>
+            {% for ammo in gun.ammo %}
+                <div>
+                <span>
+                    <a href="#">{{ ammo.name }}</a>
+                </span>
+                </div>
+            {% endfor %}
+        </div>
+        {% if gun.description %}
+            <div>
+                <span>Description:</span>
+                <span>{{ gun.description }}</span>
+            </div>
+        {% endif %}
+        <div>
+            <span>Tanks with same gun:</span>
+            {% for tank in tanks %}
+                <div>
+                <span>
+                    <a href="{{ path('tank_page', {'tank': tank.id}) }}">{{ tank.name }}</a>
+                </span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

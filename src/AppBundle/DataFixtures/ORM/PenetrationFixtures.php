@@ -12,8 +12,8 @@ class PenetrationFixtures extends Fixture
     {
         $penetrationData = [
             [
-                'gun' => 'KwK 36',
-                'shell' => 'PzGr. 39',
+                'gun' => '8.8 cm KwK 36',
+                'shell' => 'PzGr. 39/43',
                 'data' => [
                     'at_100' => '162',
                     'at_250' => '158',
@@ -23,8 +23,8 @@ class PenetrationFixtures extends Fixture
                 ],
             ],
             [
-                'gun' => 'KwK 36',
-                'shell' => 'PzGr. 40',
+                'gun' => '8.8 cm KwK 36',
+                'shell' => 'PzGr. 40/43',
                 'data' => [
                     'at_100' => '219',
                     'at_250' => '212',
@@ -34,8 +34,8 @@ class PenetrationFixtures extends Fixture
                 ],
             ],
             [
-                'gun' => 'KwK 36',
-                'shell' => 'Hl.39',
+                'gun' => '8.8 cm KwK 36',
+                'shell' => 'Hl.39/3',
                 'data' => [
                     'at_100' => '110',
                     'at_250' => '110',
@@ -45,8 +45,8 @@ class PenetrationFixtures extends Fixture
                 ],
             ],
             [
-                'gun' => 'KwK 43 L71',
-                'shell' => 'PzGr. 39',
+                'gun' => '8.8 cm KwK 43 L71',
+                'shell' => 'PzGr. 39/43',
                 'data' => [
                     'at_100' => '232',
                     'at_250' => '227',
@@ -56,8 +56,8 @@ class PenetrationFixtures extends Fixture
                 ],
             ],
             [
-                'gun' => 'KwK 43 L71',
-                'shell' => 'PzGr. 40',
+                'gun' => '8.8 cm KwK 43 L71',
+                'shell' => 'PzGr. 40/43',
                 'data' => [
                     'at_100' => '304',
                     'at_250' => '296',
@@ -67,8 +67,8 @@ class PenetrationFixtures extends Fixture
                 ],
             ],
             [
-                'gun' => 'KwK 43 L71',
-                'shell' => 'Hl.39',
+                'gun' => '8.8 cm KwK 43 L71',
+                'shell' => 'Hl.39/3',
                 'data' => [
                     'at_100' => '110',
                     'at_250' => '110',

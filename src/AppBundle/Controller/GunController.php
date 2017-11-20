@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Gun;
+use AppBundle\Entity\Shell;
 use AppBundle\Entity\Tank;
 use AppBundle\Form\GunType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -45,7 +46,7 @@ class GunController extends Controller
             $em->flush();
 
             return $this->redirectToRoute('gun_page', [
-               'gun' => $gun->getId(),
+                'gun' => $gun->getId(),
             ]);
         }
 
@@ -62,7 +63,11 @@ class GunController extends Controller
      */
     public function gunEditAction(Request $request, Gun $gun)
     {
-        $form = $this->createForm(GunType::class, $gun);
+        $allShells = $this->getDoctrine()->getRepository(Shell::class)
+            ->findAll();
+        $form = $this->createForm(GunType::class, $gun, [
+            'all_shells' => $allShells,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -20,13 +20,13 @@ class TanksFixtures extends Fixture
                 'engine' => 'Maybach HL62TR',
             ],
             'Tiger I' => [
-                'guns' => ['KwK 36'],
+                'guns' => ['8.8 cm KwK 36'],
                 'weight' => 57000,
                 'original_name' => 'Sd.Kfz.181',
                 'engine' => 'Maybach HL230',
             ],
             'Tiger II' => [
-                'guns' => ['KwK 43 L71'],
+                'guns' => ['8.8 cm KwK 43 L71'],
                 'weight' => 70000,
                 'original_name' => 'Sd.Kfz. 182',
                 'engine' => 'Maybach HL230 P30',
@@ -34,7 +34,7 @@ class TanksFixtures extends Fixture
             'Maus' => [
                 'guns' => [
                     '7.5 cm KwK 37',
-                    '12.8 cm Pak 44',
+                    '12.8 cm KwK 44 L55',
                 ],
                 'weight' => 188900,
                 'original_name' => 'Sd.Kfz 205',

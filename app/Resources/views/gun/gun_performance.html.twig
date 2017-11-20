@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-sm-12">
+        <span>Gun performance (penetration, mm.):</span>
+        <table class="table table-bordered">
+            <tr>
+                <th colspan="6"><a href="{{ path('gun_page', {'gun': gun.id}) }}">{{ gun.name }}</a></th>
+            </tr>
+            <tr>
+                <th>Shell</th>
+                <th>100m</th>
+                <th>200m</th>
+                <th>500m</th>
+                <th>1000m</th>
+                <th>2000m</th>
+            </tr>
+            {% for performance in gun.penetrationdata %}
+                <tr>
+                    <td><a href="#">{{ performance.shell.name }}</a></td>
+                    <td>{{ performance.at100 }}</td>
+                    <td>{{ performance.at250 }}</td>
+                    <td>{{ performance.at500 }}</td>
+                    <td>{{ performance.at1000 }}</td>
+                    <td>{{ performance.at2000 }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>

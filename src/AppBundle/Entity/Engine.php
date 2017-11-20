@@ -280,6 +280,13 @@ class Engine implements UploadableInterface
     public function setImageFile($imageFile)
     {
         $this->imageFile = $imageFile;
+
+        // Let Doctrine know that this entity has changed
+        // during image upload.
+        // This will be anyway overridden in the EventListener.
+        if ($imageFile) {
+            $this->setImage(md5(uniqid().'.'.$imageFile->guessExtension()));
+        }
     }
 
     /**

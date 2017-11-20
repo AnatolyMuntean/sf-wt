@@ -60,11 +60,19 @@ class Shell implements UploadableInterface
     private $imageFile;
 
     /**
+     * @var Gun[]
+     *
+     * @ORM\ManyToMany(targetEntity="Gun", mappedBy="ammo")
+     */
+    private $guns;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->penetration_data = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->guns = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -187,6 +195,13 @@ class Shell implements UploadableInterface
     public function setImageFile($imageFile)
     {
         $this->imageFile = $imageFile;
+
+        // Let Doctrine know that this entity has changed
+        // during image upload.
+        // This will be anyway overridden in the EventListener.
+        if ($imageFile) {
+            $this->setImage(md5(uniqid().'.'.$imageFile->guessExtension()));
+        }
     }
 
     /**
@@ -197,5 +212,39 @@ class Shell implements UploadableInterface
     public function getImageFile()
     {
         return $this->imageFile;
+    }
+
+    /**
+     * Add gun
+     *
+     * @param \AppBundle\Entity\Gun $gun
+     *
+     * @return Shell
+     */
+    public function addGun(\AppBundle\Entity\Gun $gun)
+    {
+        $this->guns[] = $gun;
+
+        return $this;
+    }
+
+    /**
+     * Remove gun
+     *
+     * @param \AppBundle\Entity\Gun $gun
+     */
+    public function removeGun(\AppBundle\Entity\Gun $gun)
+    {
+        $this->guns->removeElement($gun);
+    }
+
+    /**
+     * Get guns
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGuns()
+    {
+        return $this->guns;
     }
 }

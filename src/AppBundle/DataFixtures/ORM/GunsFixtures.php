@@ -3,6 +3,7 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Gun;
+use AppBundle\Entity\Shell;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -39,17 +40,32 @@ class GunsFixtures extends Fixture
                 'shell' => '75 × 640 mm. R',
                 'caliber' => 75,
             ],
-            'KwK 36' => [
+            '8.8 cm KwK 36' => [
                 'shell' => '88 x 571 mm. R',
                 'caliber' => 88,
+                'ammo' => [
+                    'PzGr. 39',
+                    'PzGr. 40',
+                    'Hl.39',
+                ]
             ],
-            'KwK 43 L71' => [
+            '8.8 cm KwK 43 L71' => [
                 'shell' => '88 x 822 mm. R',
                 'caliber' => 88,
+                'ammo' => [
+                    'PzGr. 39/43',
+                    'PzGr. 40/43',
+                    'Hl.39/3',
+                ]
             ],
-            '12.8 cm Pak 44' => [
+            '12.8 cm KwK 44 L55' => [
                 'shell' => '128 x 869 mm. R',
                 'caliber' => 128,
+                'ammo' => [
+                    'PzGr. 39/43',
+                    'PzGr. 40/43',
+                    'Hl.39/3',
+                ]
             ],
         ];
 
@@ -65,14 +81,13 @@ class GunsFixtures extends Fixture
                     case 'caliber':
                         $gunEntity->setCaliber($gunPropertyValue);
                         break;
-                    case 'elevation_min':
-                        $gunEntity->setElevationMin($gunPropertyValue);
+                    case 'ammo':
+                        foreach ($gunPropertyValue as $shellName) {
+                            /** @var Shell $shellEntity */
+                            $shellEntity = $this->getReference($shellName);
+                            $gunEntity->addAmmo($shellEntity);
+                        }
                         break;
-                    case 'elevation_max':
-                        $gunEntity->setElevationMax($gunPropertyValue);
-                        break;
-                    case 'traverse':
-                        $gunEntity->setTraverse($gunPropertyValue);
                 }
             }
 
@@ -81,5 +96,12 @@ class GunsFixtures extends Fixture
         }
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [
+            ShellFixtures::class,
+        ];
     }
 }
