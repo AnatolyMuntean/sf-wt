@@ -136,11 +136,18 @@ class User implements UserInterface
     /**
      * Get roles
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return array
      */
     public function getRoles()
     {
-        return $this->roles;
+        $roleStrings = [];
+
+        /** @var Roles $role */
+        foreach ($this->roles as $role) {
+            $roleStrings[] = $role->getRole();
+        }
+
+        return $roleStrings;
     }
 
     /**
