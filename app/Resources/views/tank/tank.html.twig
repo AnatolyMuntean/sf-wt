@@ -1,8 +1,13 @@
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-12">
+        <img class="img-responsive" src="/uploads/{{ tank.image }}">
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
         <div>
             <span>Name:</span>
-            <span>{{ tank.name }}</span>
+            <span><a href="{{ path('tank_page', {'tank': tank.id}) }}">{{ tank.name }}</a></span>
         </div>
         <div>
             <span>Armed with:</span>
@@ -36,64 +41,65 @@
             <span>Weight:</span>
             <span>{{ tank.weight / 1000 }} (t.)</span>
         </div>
-    </div>
-    <div class="col-sm-6">
-        <img class="img-responsive" src="/uploads/{{ tank.image }}">
+        {% if tank.description %}
+            <div>
+                <span>Description:</span>
+                <span>{{ tank.description }}</span>
+            </div>
+        {% endif %}
     </div>
 </div>
 
 {% if tank.guns|length > 0 %}
     <div class="row">
-        <span>Gun performance (penetration, mm.):</span>
-        <table class="table table-bordered">
-            {% for gun in tank.guns %}
-                <tr>
-                    <th colspan="6"><a href="{{ path('gun_page', {'gun': gun.id}) }}">{{ gun.name }}</a></th>
-                </tr>
-                <tr>
-                    <th>Shell</th>
-                    <th>100m</th>
-                    <th>200m</th>
-                    <th>500m</th>
-                    <th>1000m</th>
-                    <th>2000m</th>
-                </tr>
-                {% for performance in gun.penetrationdata %}
+        <div class="col-sm-12">
+            <span>Gun performance (penetration, mm.):</span>
+            <table class="table table-bordered">
+                {% for gun in tank.guns %}
                     <tr>
-                        <td><a href="#">{{ performance.shell.name }}</a></td>
-                        <td>{{ performance.at100 }}</td>
-                        <td>{{ performance.at250 }}</td>
-                        <td>{{ performance.at500 }}</td>
-                        <td>{{ performance.at1000 }}</td>
-                        <td>{{ performance.at2000 }}</td>
+                        <th colspan="6"><a href="{{ path('gun_page', {'gun': gun.id}) }}">{{ gun.name }}</a></th>
                     </tr>
+                    <tr>
+                        <th>Shell</th>
+                        <th>100m</th>
+                        <th>200m</th>
+                        <th>500m</th>
+                        <th>1000m</th>
+                        <th>2000m</th>
+                    </tr>
+                    {% for performance in gun.penetrationdata %}
+                        <tr>
+                            <td><a href="#">{{ performance.shell.name }}</a></td>
+                            <td>{{ performance.at100 }}</td>
+                            <td>{{ performance.at250 }}</td>
+                            <td>{{ performance.at500 }}</td>
+                            <td>{{ performance.at1000 }}</td>
+                            <td>{{ performance.at2000 }}</td>
+                        </tr>
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
-        </table>
+            </table>
+        </div>
     </div>
 {% endif %}
 <div class="row">
-    <span>Size (mm.):</span>
-    <table class="table table-bordered">
-        <tr>
-            <th>Height</th>
-            <th>Width</th>
-            <th>Length</th>
-            <th>Length w/ gun</th>
-            <th>Clearance</th>
-        </tr>
-        <tr>
-            <td>{{ tank.size.height }}</td>
-            <td>{{ tank.size.width }}</td>
-            <td>{{ tank.size.length }}</td>
-            <td>{{ tank.size.lengthwithgun }}</td>
-            <td>{{ tank.size.clearance }}</td>
-        </tr>
-    </table>
-</div>
-{% if tank.description %}
-    <div>
-        <span>Description:</span>
-        <span>{{ tank.description }}</span>
+    <div class="col-sm-12">
+        <span>Size (mm.):</span>
+        <table class="table table-bordered">
+            <tr>
+                <th>Height</th>
+                <th>Width</th>
+                <th>Length</th>
+                <th>Length w/ gun</th>
+                <th>Clearance</th>
+            </tr>
+            <tr>
+                <td>{{ tank.size.height }}</td>
+                <td>{{ tank.size.width }}</td>
+                <td>{{ tank.size.length }}</td>
+                <td>{{ tank.size.lengthwithgun }}</td>
+                <td>{{ tank.size.clearance }}</td>
+            </tr>
+        </table>
     </div>
-{% endif %}
+</div>
