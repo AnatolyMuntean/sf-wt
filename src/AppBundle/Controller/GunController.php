@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class GunController extends Controller
 {
@@ -30,6 +31,7 @@ class GunController extends Controller
     /**
      * @Route("/gun/add", name="gun_add")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function gunAddAction(Request $request)
     {
@@ -56,6 +58,7 @@ class GunController extends Controller
     /**
      * @Route("/gun/{gun}/edit", name="gun_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function gunEditAction(Request $request, Gun $gun)
     {

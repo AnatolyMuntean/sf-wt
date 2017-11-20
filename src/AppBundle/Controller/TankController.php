@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class TankController extends Controller
 {
@@ -33,6 +34,7 @@ class TankController extends Controller
     /**
      * @Route("/tank/add", name="tank_add")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function tankAddAction(Request $request)
     {
@@ -65,6 +67,7 @@ class TankController extends Controller
     /**
      * @Route("/tank/{tank}/edit", name="tank_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function tankEditAction(Request $request, Tank $tank)
     {

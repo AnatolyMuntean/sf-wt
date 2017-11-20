@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class EngineController extends Controller
 {
@@ -31,6 +32,7 @@ class EngineController extends Controller
     /**
      * @Route("/engine/add", name="engine_add")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function engineAddAction(Request $request)
     {
@@ -57,6 +59,7 @@ class EngineController extends Controller
     /**
      * @Route("/engine/{engine}/edit", name="engine_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function engineEditAction(Request $request, Engine $engine)
     {
