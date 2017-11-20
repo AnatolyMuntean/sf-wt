@@ -23,8 +23,12 @@ class UserFixtures extends Fixture implements ContainerAwareInterface
         $users = [
             'admin' => [
                 'password' => '1234',
-                'roles' => ['ROLE_ADMIN'],
-            ]
+                'roles' => ['ROLE_ADMIN', 'ROLE_USER'],
+            ],
+            'user' => [
+                'password' => '1234',
+                'roles' => ['ROLE_USER'],
+            ],
         ];
 
         foreach ($users as $userName => $userProperties) {
@@ -32,7 +36,7 @@ class UserFixtures extends Fixture implements ContainerAwareInterface
             $userEntity->setUsername($userName);
 
             foreach ($userProperties as $userPropertyName => $userPropertyValue) {
-                switch($userPropertyName) {
+                switch ($userPropertyName) {
                     case 'password':
                         $encoderFactory = $this->container->get('security.encoder_factory');
                         $encoder = $encoderFactory->getEncoder($userEntity);

@@ -7,6 +7,8 @@
         </div>
     {% endif %}
     <form action="{{ path('login') }}" method="post">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
         <label for="username">Username:</label>
         <input type="text" id="username" name="_username" value="{{ last_username }}">
 

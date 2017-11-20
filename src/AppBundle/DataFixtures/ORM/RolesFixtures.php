@@ -12,6 +12,7 @@ class RolesFixtures extends Fixture
     {
         $roles = [
             'ROLE_ADMIN',
+            'ROLE_USER',
         ];
 
         foreach ($roles as $role) {
