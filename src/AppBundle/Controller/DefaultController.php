@@ -3,8 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Gun;
-use AppBundle\Entity\Shell;
 use AppBundle\Entity\Tank;
+use AppBundle\Entity\Vendor;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,14 +23,14 @@ class DefaultController extends Controller
         $tanks = $entityManager->getRepository(Tank::class)->findAll();
         /** @var Gun[] $guns */
         $guns = $entityManager->getRepository(Gun::class)->findAll();
-        /** @var Shell[] $shells */
-        $shells = $entityManager->getRepository(Shell::class)->findAll();
+        /** @var Vendor[] $vendors */
+        $vendors = $entityManager->getRepository(Vendor::class)->findAll();
 
         return $this->render('main/index.html.twig', [
             'header' => 'List of WWII tanks and guns',
             'tanks' => $tanks,
             'guns' => $guns,
-            'shells' => $shells,
+            'vendors' => $vendors,
         ]);
     }
 }
