@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Shell
  *
- * @ORM\Table(name="shell")
+ * @ORM\Table(name="shells")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ShellRepository")
  */
 class Shell implements UploadableInterface

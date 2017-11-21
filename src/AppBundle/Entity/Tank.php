@@ -119,6 +119,13 @@ class Tank implements UploadableInterface
     private $vendor;
 
     /**
+     * @var VehicleType
+     *
+     * @ORM\ManyToOne(targetEntity="VehicleType", inversedBy="tanks")
+     */
+    private $type;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -455,5 +462,29 @@ class Tank implements UploadableInterface
     public function getVendor()
     {
         return $this->vendor;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \AppBundle\Entity\VehicleType $type
+     *
+     * @return Tank
+     */
+    public function setType(\AppBundle\Entity\VehicleType $type = null)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \AppBundle\Entity\VehicleType
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }
