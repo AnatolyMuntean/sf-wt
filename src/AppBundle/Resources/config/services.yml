@@ -10,3 +10,16 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
+
+    admin.vendor:
+        class: AppBundle\Admin\VendorAdmin
+        arguments: [~, AppBundle\Entity\Vendor, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Vendors }
+        public: true
+    admin.vehicle_type:
+            class: AppBundle\Admin\VehicleTypeAdmin
+            arguments: [~, AppBundle\Entity\VehicleType, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, label: Vehicle Types }
+            public: true
