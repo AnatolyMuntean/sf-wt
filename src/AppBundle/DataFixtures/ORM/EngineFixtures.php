@@ -15,46 +15,61 @@ class EngineFixtures extends Fixture
                 'horsepower' => '140',
                 'displacement' => '6191',
                 'type' => 'S6',
+                'vendor' => 'Germany',
             ],
             'Maybach HL230' => [
                 'horsepower' => '650',
                 'displacement' => '23000',
                 'type' => 'V12',
+                'vendor' => 'Germany',
             ],
             'Maybach HL230 P30' => [
                 'horsepower' => '700',
                 'displacement' => '23095',
                 'type' => 'V12',
+                'vendor' => 'Germany',
             ],
             'MB 517' => [
                 'horsepower' => '1200',
                 'displacement' => '42350',
                 'type' => 'V12',
-            ]
+                'vendor' => 'Germany',
+            ],
         ];
 
         foreach ($engines as $engineName => $engineProperties) {
-            $engine = new Engine();
-            $engine->setName($engineName);
+            $engineEntity = new Engine();
+            $engineEntity->setName($engineName);
 
             foreach ($engineProperties as $enginePropertyName => $enginePropertyValue) {
                 switch ($enginePropertyName) {
                     case 'horsepower':
-                        $engine->setHorsepower($enginePropertyValue);
+                        $engineEntity->setHorsepower($enginePropertyValue);
                         break;
                     case 'displacement':
-                        $engine->setDisplacement($enginePropertyValue);
+                        $engineEntity->setDisplacement($enginePropertyValue);
                         break;
                     case 'type':
-                        $engine->setType($enginePropertyValue);
+                        $engineEntity->setType($enginePropertyValue);
+                        break;
+                    case 'vendor':
+                        $vendorEntity = $this->getReference($enginePropertyValue);
+                        $engineEntity->setVendor($vendorEntity);
                         break;
                 }
             }
 
-            $manager->persist($engine);
-            $this->addReference($engineName, $engine);
+            $manager->persist($engineEntity);
+            $this->addReference($engineName, $engineEntity);
         }
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [
+            VendorFixtures::class,
+        ];
     }
 }

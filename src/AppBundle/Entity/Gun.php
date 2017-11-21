@@ -88,6 +88,13 @@ class Gun implements UploadableInterface
     private $ammo;
 
     /**
+     * @var Vendor
+     *
+     * @ORM\ManyToOne(targetEntity="Vendor", inversedBy="guns")
+     */
+    private $vendor;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -350,5 +357,29 @@ class Gun implements UploadableInterface
     public function getAmmo()
     {
         return $this->ammo;
+    }
+
+    /**
+     * Set vendor
+     *
+     * @param \AppBundle\Entity\Vendor $vendor
+     *
+     * @return Gun
+     */
+    public function setVendor(\AppBundle\Entity\Vendor $vendor = null)
+    {
+        $this->vendor = $vendor;
+
+        return $this;
+    }
+
+    /**
+     * Get vendor
+     *
+     * @return \AppBundle\Entity\Vendor
+     */
+    public function getVendor()
+    {
+        return $this->vendor;
     }
 }

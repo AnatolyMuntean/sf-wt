@@ -18,18 +18,21 @@ class TanksFixtures extends Fixture
                 'weight' => 9400,
                 'original_name' => 'Sd.Kfz. 121',
                 'engine' => 'Maybach HL62TR',
+                'vendor' => 'Germany',
             ],
             'Tiger I' => [
                 'guns' => ['8.8 cm KwK 36'],
                 'weight' => 57000,
                 'original_name' => 'Sd.Kfz.181',
                 'engine' => 'Maybach HL230',
+                'vendor' => 'Germany',
             ],
             'Tiger II' => [
                 'guns' => ['8.8 cm KwK 43 L71'],
                 'weight' => 70000,
                 'original_name' => 'Sd.Kfz. 182',
                 'engine' => 'Maybach HL230 P30',
+                'vendor' => 'Germany',
             ],
             'Maus' => [
                 'guns' => [
@@ -39,6 +42,7 @@ class TanksFixtures extends Fixture
                 'weight' => 188900,
                 'original_name' => 'Sd.Kfz 205',
                 'engine' => 'MB 517',
+                'vendor' => 'Germany',
             ],
         ];
 
@@ -66,6 +70,10 @@ class TanksFixtures extends Fixture
                     case 'original_name':
                         $tankEntity->setOriginalName($tankPropertyValue);
                         break;
+                    case 'vendor':
+                        $vendorEntity = $this->getReference($tankPropertyValue);
+                        $tankEntity->setVendor($vendorEntity);
+                        break;
                 }
             }
 
@@ -79,6 +87,7 @@ class TanksFixtures extends Fixture
     public function getDependencies()
     {
         return [
+            VendorFixtures::class,
             GunsFixtures::class,
             EngineFixtures::class,
         ];

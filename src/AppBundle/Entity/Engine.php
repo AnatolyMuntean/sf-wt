@@ -81,6 +81,13 @@ class Engine implements UploadableInterface
     private $imageFile;
 
     /**
+     * @var Vendor
+     *
+     * @ORM\ManyToOne(targetEntity="Vendor", inversedBy="engines")
+     */
+    private $vendor;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -297,5 +304,29 @@ class Engine implements UploadableInterface
     public function getImageFile()
     {
         return $this->imageFile;
+    }
+
+    /**
+     * Set vendor
+     *
+     * @param \AppBundle\Entity\Vendor $vendor
+     *
+     * @return Engine
+     */
+    public function setVendor(\AppBundle\Entity\Vendor $vendor = null)
+    {
+        $this->vendor = $vendor;
+
+        return $this;
+    }
+
+    /**
+     * Get vendor
+     *
+     * @return \AppBundle\Entity\Vendor
+     */
+    public function getVendor()
+    {
+        return $this->vendor;
     }
 }

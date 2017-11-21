@@ -112,6 +112,13 @@ class Tank implements UploadableInterface
     private $imageFile;
 
     /**
+     * @var Vendor
+     *
+     * @ORM\ManyToOne(targetEntity="Vendor", inversedBy="tanks")
+     */
+    private $vendor;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -424,5 +431,29 @@ class Tank implements UploadableInterface
     public function getImageFile()
     {
         return $this->imageFile;
+    }
+
+    /**
+     * Set vendor
+     *
+     * @param \AppBundle\Entity\Vendor $vendor
+     *
+     * @return Tank
+     */
+    public function setVendor(\AppBundle\Entity\Vendor $vendor = null)
+    {
+        $this->vendor = $vendor;
+
+        return $this;
+    }
+
+    /**
+     * Get vendor
+     *
+     * @return \AppBundle\Entity\Vendor
+     */
+    public function getVendor()
+    {
+        return $this->vendor;
     }
 }
