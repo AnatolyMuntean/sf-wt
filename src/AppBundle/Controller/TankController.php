@@ -32,69 +32,6 @@ class TankController extends Controller
     }
 
     /**
-     * @Route("/tank/add", name="tank_add")
-     * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
-     */
-    public function tankAddAction(Request $request)
-    {
-        $doctrine = $this->getDoctrine();
-        $tank = new Tank();
-        $allGuns = $doctrine->getRepository(Gun::class)->findAll();
-        $allEngines = $doctrine->getRepository(Engine::class)->findAll();
-        $form = $this->createForm(TankType::class, $tank, [
-            'all_guns' => $allGuns,
-            'all_engines' => $allEngines,
-        ]);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($tank);
-            $em->flush();
-
-            return $this->redirectToRoute('tank_page', [
-                'tank' => $tank->getId(),
-            ]);
-        }
-
-        return $this->render('tank/tank_edit.html.twig', [
-            'header' => 'Add new tank',
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/tank/{tank}/edit", name="tank_edit")
-     * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
-     */
-    public function tankEditAction(Request $request, Tank $tank)
-    {
-        $doctrine = $this->getDoctrine();
-        $allGuns = $doctrine->getRepository(Gun::class)->findAll();
-        $allEngines = $doctrine->getRepository(Engine::class)->findAll();
-        $form = $this->createForm(TankType::class, $tank, [
-            'all_guns' => $allGuns,
-            'all_engines' => $allEngines,
-        ]);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('tank_page', [
-                'tank' => $tank->getId(),
-            ]);
-        }
-
-        return $this->render('tank/tank_edit.html.twig', [
-            'header' => 'Edit tank: ' . $tank->getName(),
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
      * @Route("/tank/{tank}/compare", name="tank_compare_add")
      */
     public function tankAddToCompareAction(Request $request, Tank $tank)

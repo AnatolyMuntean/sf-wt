@@ -1,7 +1,6 @@
 {% extends "base.html.twig" %}
 {% block edit %}
     <div>
-        <a href="{{ path('tank_edit', {'tank': tank.id}) }}">Edit</a>
         <a href="{{ path('tank_compare_add', {'tank': tank.id}) }}">Compare</a>
     </div>
 {% endblock %}

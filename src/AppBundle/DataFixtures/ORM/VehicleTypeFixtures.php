@@ -14,8 +14,11 @@ class VehicleTypeFixtures extends Fixture
             'Light tank',
             'Medium tank',
             'Heavy tank',
+            'Super-heavy tank',
             'Tank destroyer',
-            'Self-propelled gun',
+            'Assault gun',
+            'Self-propelled anti-aircraft gun',
+            'Self-propelled artillery',
         ];
 
         foreach ($vehicleTypes as $vehicleType) {

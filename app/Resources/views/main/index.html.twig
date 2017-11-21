@@ -10,15 +10,16 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-sm-6">
+                            {% for vehicle_type in vehicle_types %}
+                            <div class="col-sm-3">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Tanks</h3>
+                                        <h3 class="panel-title">{{ vehicle_type.name }}</h3>
                                     </div>
                                     <div class="panel-body">
                                         <ul>
                                             {% for tank in tanks %}
-                                                {% if tank.vendor.id == vendor.id %}
+                                                {% if tank.vendor.id == vendor.id and tank.type.name == vehicle_type.name %}
                                                     <li>
                                                         <a href="{{ path('tank_page', {'tank': tank.id}) }}">{{ tank.name }}</a>
                                                     </li>
@@ -28,24 +29,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Guns</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <ul>
-                                            {% for gun in guns %}
-                                                {% if gun.vendor.id == vendor.id %}
-                                                    <li>
-                                                        <a href="{{ path('gun_page', {'gun': gun.id}) }}">{{ gun.name }}</a>
-                                                    </li>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

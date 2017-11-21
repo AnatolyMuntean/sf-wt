@@ -47,7 +47,7 @@ class GunsFixtures extends Fixture
                 'caliber' => 75,
                 'vendor' => 'Germany',
             ],
-            '8.8 cm KwK 36' => [
+            '8.8 cm KwK 36 L56' => [
                 'shell' => '88 x 571 mm. R',
                 'caliber' => 88,
                 'ammo' => [

@@ -22,3 +22,6 @@ security:
 
     encoders:
         AppBundle\Entity\User: sha512
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
