@@ -18,8 +18,14 @@ services:
             - { name: sonata.admin, manager_type: orm, label: Vendors }
         public: true
     admin.vehicle_type:
-            class: AppBundle\Admin\VehicleTypeAdmin
-            arguments: [~, AppBundle\Entity\VehicleType, ~]
-            tags:
-                - { name: sonata.admin, manager_type: orm, label: Vehicle Types }
-            public: true
+        class: AppBundle\Admin\VehicleTypeAdmin
+        arguments: [~, AppBundle\Entity\VehicleType, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Vehicle Types }
+        public: true
+    admin.tank:
+        class: AppBundle\Admin\TankAdmin
+        arguments: [~, AppBundle\Entity\Tank, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Tanks }
+        public: true

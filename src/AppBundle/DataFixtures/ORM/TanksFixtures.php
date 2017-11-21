@@ -24,7 +24,7 @@ class TanksFixtures extends Fixture
             'Tiger I' => [
                 'guns' => ['8.8 cm KwK 36 L56'],
                 'weight' => 57000,
-                'original_name' => 'Sd.Kfz.181',
+                'original_name' => 'Sd.Kfz. 181',
                 'engine' => 'Maybach HL230',
                 'vendor' => 'Germany',
                 'type' => 'Heavy tank',
@@ -43,7 +43,7 @@ class TanksFixtures extends Fixture
                     '12.8 cm KwK 44 L55',
                 ],
                 'weight' => 188900,
-                'original_name' => 'Sd.Kfz 205',
+                'original_name' => 'Sd.Kfz. 205',
                 'engine' => 'MB 517',
                 'vendor' => 'Germany',
                 'type' => 'Super-heavy tank',
