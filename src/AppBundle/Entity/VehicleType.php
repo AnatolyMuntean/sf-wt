@@ -31,7 +31,7 @@ class VehicleType
     /**
      * @var string
      *
-     * @ORM\Column(name="abbreviation", type="string", unique=true)
+     * @ORM\Column(name="abbreviation", type="string", length=64, nullable=true)
      */
     private $abbreviation;
 
