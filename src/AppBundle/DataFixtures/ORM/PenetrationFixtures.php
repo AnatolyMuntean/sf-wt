@@ -13,7 +13,7 @@ class PenetrationFixtures extends Fixture
         $penetrationData = [
             [
                 'gun' => '8.8 cm KwK 36',
-                'shell' => 'PzGr. 39/43',
+                'shell' => 'PzGr. 39',
                 'data' => [
                     'at_100' => '162',
                     'at_250' => '158',
@@ -24,7 +24,7 @@ class PenetrationFixtures extends Fixture
             ],
             [
                 'gun' => '8.8 cm KwK 36',
-                'shell' => 'PzGr. 40/43',
+                'shell' => 'PzGr. 40',
                 'data' => [
                     'at_100' => '219',
                     'at_250' => '212',
@@ -35,7 +35,7 @@ class PenetrationFixtures extends Fixture
             ],
             [
                 'gun' => '8.8 cm KwK 36',
-                'shell' => 'Hl.39/3',
+                'shell' => 'Hl.39',
                 'data' => [
                     'at_100' => '110',
                     'at_250' => '110',
