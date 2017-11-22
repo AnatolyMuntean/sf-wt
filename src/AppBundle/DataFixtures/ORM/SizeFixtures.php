@@ -18,6 +18,7 @@ class SizeFixtures extends Fixture
 
         foreach ($sizes as $tankName => $size) {
             $sizeEntity = new Size();
+            $sizeEntity->setName($size['name']);
             $sizeEntity->setHeight($size['height']);
             $sizeEntity->setWidth($size['width']);
             $sizeEntity->setLength($size['length']);

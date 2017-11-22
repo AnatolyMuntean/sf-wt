@@ -24,6 +24,13 @@ class Size
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     */
+    private $name;
+
+    /**
      * @ORM\OneToMany(targetEntity="Tank", mappedBy="size")
      */
     private $tank;
@@ -248,5 +255,29 @@ class Size
         if (empty($this->getLengthWithGun()) || $this->lengthWithGun < $this->length) {
             $this->setLengthWithGun($this->length);
         }
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Size
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }
