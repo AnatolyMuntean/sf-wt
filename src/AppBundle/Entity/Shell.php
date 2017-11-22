@@ -38,11 +38,11 @@ class Shell implements UploadableInterface
     private $abbreviation;
 
     /**
-     * @var Penetration
+     * @var GunPerformance
      *
-     * @ORM\OneToMany(targetEntity="Penetration", mappedBy="shell")
+     * @ORM\OneToMany(targetEntity="GunPerformance", mappedBy="shell")
      */
-    private $penetration_data;
+    private $performance_data;
 
     /**
      * @var string
@@ -71,7 +71,7 @@ class Shell implements UploadableInterface
      */
     public function __construct()
     {
-        $this->penetration_data = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->performance_data = new \Doctrine\Common\Collections\ArrayCollection();
         $this->guns = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -131,40 +131,6 @@ class Shell implements UploadableInterface
     public function getAbbreviation()
     {
         return $this->abbreviation;
-    }
-
-    /**
-     * Add penetrationDatum
-     *
-     * @param \AppBundle\Entity\Penetration $penetrationDatum
-     *
-     * @return Shell
-     */
-    public function addPenetrationDatum(\AppBundle\Entity\Penetration $penetrationDatum)
-    {
-        $this->penetration_data[] = $penetrationDatum;
-
-        return $this;
-    }
-
-    /**
-     * Remove penetrationDatum
-     *
-     * @param \AppBundle\Entity\Penetration $penetrationDatum
-     */
-    public function removePenetrationDatum(\AppBundle\Entity\Penetration $penetrationDatum)
-    {
-        $this->penetration_data->removeElement($penetrationDatum);
-    }
-
-    /**
-     * Get penetrationData
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPenetrationData()
-    {
-        return $this->penetration_data;
     }
 
     /**
@@ -246,5 +212,39 @@ class Shell implements UploadableInterface
     public function getGuns()
     {
         return $this->guns;
+    }
+
+    /**
+     * Add performanceDatum
+     *
+     * @param \AppBundle\Entity\GunPerformance $performanceDatum
+     *
+     * @return Shell
+     */
+    public function addPerformanceDatum(\AppBundle\Entity\GunPerformance $performanceDatum)
+    {
+        $this->performance_data[] = $performanceDatum;
+
+        return $this;
+    }
+
+    /**
+     * Remove performanceDatum
+     *
+     * @param \AppBundle\Entity\GunPerformance $performanceDatum
+     */
+    public function removePerformanceDatum(\AppBundle\Entity\GunPerformance $performanceDatum)
+    {
+        $this->performance_data->removeElement($performanceDatum);
+    }
+
+    /**
+     * Get performanceData
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPerformanceData()
+    {
+        return $this->performance_data;
     }
 }

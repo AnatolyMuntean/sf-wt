@@ -3,8 +3,10 @@ services:
         class: 'AppBundle\Services\FileUploaderService'
         arguments:
             - '%uploads_directory%'
+
     fixture_loader:
         class: 'AppBundle\Services\FixturesLoaderService'
+
     image_upload_listener:
         class: 'AppBundle\EventListener\ImageUploadListener'
         arguments:
@@ -19,24 +21,28 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: Vendors }
         public: true
+
     admin.vehicle_type:
         class: AppBundle\Admin\VehicleTypeAdmin
         arguments: [~, AppBundle\Entity\VehicleType, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Vehicle Types }
         public: true
+
     admin.tank:
         class: AppBundle\Admin\TankAdmin
         arguments: [~, AppBundle\Entity\Tank, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Tanks }
         public: true
+
     admin.size:
             class: AppBundle\Admin\SizeAdmin
             arguments: [~, AppBundle\Entity\Size, ~]
             tags:
                 - { name: sonata.admin, manager_type: orm, label: Sizes }
             public: true
+
     admin.gun:
             class: AppBundle\Admin\GunAdmin
             arguments: [~, AppBundle\Entity\Gun, ~]

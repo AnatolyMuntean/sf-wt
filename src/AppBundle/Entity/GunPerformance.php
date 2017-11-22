@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Penetration
+ * GunPerformance
  *
- * @ORM\Table(name="penetration")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PenetrationRepository")
+ * @ORM\Table(name="gun_performance")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\GunPerformanceRepository")
  */
-class Penetration
+class GunPerformance
 {
     /**
      * @var integer
@@ -22,12 +22,19 @@ class Penetration
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Shell", inversedBy="penetration_data")
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     */
+    private $name;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Shell", inversedBy="performance_data")
      */
     private $shell;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Gun", inversedBy="penetration_data")
+     * @ORM\ManyToOne(targetEntity="Gun", inversedBy="performance_data")
      */
     private $gun;
 
@@ -81,7 +88,7 @@ class Penetration
      *
      * @param \AppBundle\Entity\Shell $shell
      *
-     * @return Penetration
+     * @return GunPerformance
      */
     public function setShell(\AppBundle\Entity\Shell $shell = null)
     {
@@ -105,7 +112,7 @@ class Penetration
      *
      * @param \AppBundle\Entity\Gun $gun
      *
-     * @return Penetration
+     * @return GunPerformance
      */
     public function setGun(\AppBundle\Entity\Gun $gun = null)
     {
@@ -129,7 +136,7 @@ class Penetration
      *
      * @param integer $at100
      *
-     * @return Penetration
+     * @return GunPerformance
      */
     public function setAt100($at100)
     {
@@ -153,7 +160,7 @@ class Penetration
      *
      * @param integer $at250
      *
-     * @return Penetration
+     * @return GunPerformance
      */
     public function setAt250($at250)
     {
@@ -177,7 +184,7 @@ class Penetration
      *
      * @param integer $at500
      *
-     * @return Penetration
+     * @return GunPerformance
      */
     public function setAt500($at500)
     {
@@ -201,7 +208,7 @@ class Penetration
      *
      * @param integer $at1000
      *
-     * @return Penetration
+     * @return GunPerformance
      */
     public function setAt1000($at1000)
     {
@@ -225,7 +232,7 @@ class Penetration
      *
      * @param integer $at2000
      *
-     * @return Penetration
+     * @return GunPerformance
      */
     public function setAt2000($at2000)
     {
@@ -242,5 +249,29 @@ class Penetration
     public function getAt2000()
     {
         return $this->at_2000;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return GunPerformance
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

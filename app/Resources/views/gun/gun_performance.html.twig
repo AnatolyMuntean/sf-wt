@@ -13,7 +13,7 @@
                 <th>1000m</th>
                 <th>2000m</th>
             </tr>
-            {% for performance in gun.penetrationdata %}
+            {% for performance in gun.performancedata %}
                 <tr>
                     <td><a href="#">{{ performance.shell.name }}</a></td>
                     <td>{{ performance.at100 }}</td>
