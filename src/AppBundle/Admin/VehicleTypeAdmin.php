@@ -32,6 +32,6 @@ class VehicleTypeAdmin extends AbstractAdmin
     {
         $list
             ->addIdentifier('name')
-            ->addIdentifier('abbreviation');
+            ->add('abbreviation');
     }
 }

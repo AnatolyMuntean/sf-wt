@@ -2,15 +2,12 @@
 
 namespace AppBundle\Admin;
 
-use AppBundle\Entity\Shell;
-use AppBundle\Entity\Vendor;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class GunAdmin extends AbstractAdmin
+class EngineAdmin extends AbstractAdmin
 {
     public function configureFormFields(FormMapper $form)
     {
@@ -19,12 +16,10 @@ class GunAdmin extends AbstractAdmin
             ->add('vendor', 'sonata_type_model', [
                 'property' => 'country'
             ])
-            ->add('ammo', 'sonata_type_model', [
-                'property' => 'name',
-                'multiple' => true,
-            ])
-            ->add('shell')
-            ->add('caliber');
+            ->add('horsepower')
+            ->add('displacement')
+            ->add('type')
+            ->add('description');
     }
 
     public function configureDatagridFilters(DatagridMapper $filter)
@@ -33,7 +28,8 @@ class GunAdmin extends AbstractAdmin
             ->add('name')
             ->add('vendor.country', null, [
                 'label' => 'Vendor',
-            ]);
+            ])
+            ->add('type');
     }
 
     public function configureListFields(ListMapper $list)
@@ -41,8 +37,9 @@ class GunAdmin extends AbstractAdmin
         $list
             ->addIdentifier('name')
             ->add('vendor.country', null, [
-                'label' => 'Vendor',
-            ]);
+                'label' => 'Vendor'
+            ])
+            ->add('type');
     }
 
     public function toString($object)

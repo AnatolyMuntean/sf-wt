@@ -55,8 +55,11 @@ class TankAdmin extends AbstractAdmin
     {
         $list
             ->addIdentifier('name')
-            ->addIdentifier('original_name')
-            ->addIdentifier('catalogue_name');
+            ->add('original_name')
+            ->add('catalogue_name')
+            ->add('vendor.country', null, [
+                'label' => 'Vendor',
+            ]);
     }
 
     /**
