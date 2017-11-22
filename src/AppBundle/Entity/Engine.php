@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="engines")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EngineRepository")
  */
-class Engine implements UploadableInterface
+class Engine implements UploadableInterface, SluggableInterface
 {
     /**
      * @var int
@@ -86,6 +86,13 @@ class Engine implements UploadableInterface
      * @ORM\ManyToOne(targetEntity="Vendor", inversedBy="engines")
      */
     private $vendor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     */
+    private $slug;
 
     /**
      * Constructor
@@ -328,5 +335,29 @@ class Engine implements UploadableInterface
     public function getVendor()
     {
         return $this->vendor;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Engine
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

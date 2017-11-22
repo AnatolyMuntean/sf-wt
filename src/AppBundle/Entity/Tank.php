@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="tanks")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TankRepository")
  */
-class Tank implements UploadableInterface
+class Tank implements UploadableInterface, SluggableInterface
 {
     /**
      * @var int
@@ -123,6 +123,13 @@ class Tank implements UploadableInterface
      * @ORM\ManyToOne(targetEntity="VehicleType", inversedBy="tanks")
      */
     private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     */
+    private $slug;
 
     /**
      * Constructor
@@ -485,5 +492,29 @@ class Tank implements UploadableInterface
     public function getCatalogueName()
     {
         return $this->catalogue_name;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Tank
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

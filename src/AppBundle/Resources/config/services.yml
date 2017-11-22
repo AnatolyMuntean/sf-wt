@@ -1,4 +1,7 @@
 services:
+    slugger:
+        class: 'AppBundle\Services\SluggerService'
+
     file_uploader:
         class: 'AppBundle\Services\FileUploaderService'
         arguments:
@@ -11,6 +14,14 @@ services:
         class: 'AppBundle\EventListener\ImageUploadListener'
         arguments:
             - '@file_uploader'
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    slugger_listener:
+        class: 'AppBundle\EventListener\SluggerListener'
+        arguments:
+            - '@slugger'
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
