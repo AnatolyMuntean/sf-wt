@@ -4,6 +4,7 @@ namespace AppBundle\Admin;
 
 use AppBundle\Entity\Engine;
 use AppBundle\Entity\Gun;
+use AppBundle\Entity\Size;
 use AppBundle\Entity\Tank;
 use AppBundle\Entity\VehicleType;
 use AppBundle\Entity\Vendor;
@@ -35,6 +36,12 @@ class TankAdmin extends AbstractAdmin
             ->add('engine', EntityType::class, [
                 'class' => Engine::class,
                 'choice_label' => 'name',
+                'required' => false,
+            ])
+            ->add('size', EntityType::class, [
+                'class' => Size::class,
+                'choice_label' => 'name',
+                'required' => false
             ])
             ->add('catalogue_name')
             ->add('original_name')
