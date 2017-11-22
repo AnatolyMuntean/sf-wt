@@ -16,7 +16,8 @@ class TanksFixtures extends Fixture
             'Panzer II' => [
                 'guns' => ['2 cm KwK 30'],
                 'weight' => 9400,
-                'original_name' => 'Sd.Kfz. 121',
+                'original_name' => 'Panzerkampfwagen II',
+                'catalogue_name' => 'Sd.Kfz. 121',
                 'engine' => 'Maybach HL62TR',
                 'vendor' => 'Germany',
                 'type' => 'Light tank',
@@ -24,7 +25,8 @@ class TanksFixtures extends Fixture
             'Tiger I' => [
                 'guns' => ['8.8 cm KwK 36 L56'],
                 'weight' => 57000,
-                'original_name' => 'Sd.Kfz. 181',
+                'original_name' => 'Panzerkampfwagen VI Tiger Ausf. E',
+                'catalogue_name' => 'Sd.Kfz. 181',
                 'engine' => 'Maybach HL230',
                 'vendor' => 'Germany',
                 'type' => 'Heavy tank',
@@ -32,7 +34,8 @@ class TanksFixtures extends Fixture
             'Tiger II' => [
                 'guns' => ['8.8 cm KwK 43 L71'],
                 'weight' => 70000,
-                'original_name' => 'Sd.Kfz. 182',
+                'original_name' => 'Panzerkampfwagen Tiger Ausf. B',
+                'catalogue_name' => 'Sd.Kfz. 182',
                 'engine' => 'Maybach HL230 P30',
                 'vendor' => 'Germany',
                 'type' => 'Heavy tank',
@@ -43,7 +46,8 @@ class TanksFixtures extends Fixture
                     '12.8 cm KwK 44 L55',
                 ],
                 'weight' => 188900,
-                'original_name' => 'Sd.Kfz. 205',
+                'original_name' => 'Panzerkampfwagen VIII Maus',
+                'catalogue_name' => 'Sd.Kfz. 205',
                 'engine' => 'MB 517',
                 'vendor' => 'Germany',
                 'type' => 'Super-heavy tank',
@@ -70,6 +74,9 @@ class TanksFixtures extends Fixture
                         break;
                     case 'weight':
                         $tankEntity->setWeight($tankPropertyValue);
+                        break;
+                    case 'catalogue_name':
+                        $tankEntity->setCatalogueName($tankPropertyValue);
                         break;
                     case 'original_name':
                         $tankEntity->setOriginalName($tankPropertyValue);

@@ -36,20 +36,26 @@ class TankAdmin extends AbstractAdmin
                 'class' => Engine::class,
                 'choice_label' => 'name',
             ])
+            ->add('catalogue_name')
+            ->add('original_name')
             ->add('weight', 'integer')
             ->add('description', 'textarea');
     }
 
     protected function configureDatagridFilters(DatagridMapper $filter)
     {
-        $filter->add('name');
+        $filter
+            ->add('name')
+            ->add('original_name')
+            ->add('catalogue_name');
     }
 
     protected function configureListFields(ListMapper $list)
     {
         $list
             ->addIdentifier('name')
-            ->addIdentifier('original_name');
+            ->addIdentifier('original_name')
+            ->addIdentifier('catalogue_name');
     }
 
     /**

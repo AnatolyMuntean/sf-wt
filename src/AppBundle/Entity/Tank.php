@@ -61,6 +61,13 @@ class Tank implements UploadableInterface
     private $original_name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="catalogue_name", type="string")
+     */
+    private $catalogue_name;
+
+    /**
      * @var Engine
      *
      * @ORM\ManyToOne(targetEntity="Engine", inversedBy="tank")
@@ -454,5 +461,29 @@ class Tank implements UploadableInterface
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set catalogueName
+     *
+     * @param string $catalogueName
+     *
+     * @return Tank
+     */
+    public function setCatalogueName($catalogueName)
+    {
+        $this->catalogue_name = $catalogueName;
+
+        return $this;
+    }
+
+    /**
+     * Get catalogueName
+     *
+     * @return string
+     */
+    public function getCatalogueName()
+    {
+        return $this->catalogue_name;
     }
 }
