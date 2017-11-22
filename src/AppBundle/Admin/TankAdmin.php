@@ -36,7 +36,8 @@ class TankAdmin extends AbstractAdmin
                 'class' => Engine::class,
                 'choice_label' => 'name',
             ])
-            ->add('weight', 'integer');
+            ->add('weight', 'integer')
+            ->add('description', 'textarea');
     }
 
     protected function configureDatagridFilters(DatagridMapper $filter)

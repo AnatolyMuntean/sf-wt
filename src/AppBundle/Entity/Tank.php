@@ -54,14 +54,6 @@ class Tank implements UploadableInterface
     private $weight;
 
     /**
-     * @var Production
-     *
-     * @ORM\ManyToOne(targetEntity="Production", inversedBy="tank", cascade="persist")
-     * @Assert\Valid
-     */
-    private $production;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="original_name", type="string")
@@ -271,30 +263,6 @@ class Tank implements UploadableInterface
     public function getSize()
     {
         return $this->size;
-    }
-
-    /**
-     * Set production
-     *
-     * @param \AppBundle\Entity\Production $production
-     *
-     * @return Tank
-     */
-    public function setProduction(\AppBundle\Entity\Production $production = null)
-    {
-        $this->production = $production;
-
-        return $this;
-    }
-
-    /**
-     * Get production
-     *
-     * @return \AppBundle\Entity\Production
-     */
-    public function getProduction()
-    {
-        return $this->production;
     }
 
     /**
