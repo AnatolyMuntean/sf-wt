@@ -67,3 +67,10 @@ services:
             tags:
                 - { name: sonata.admin, manager_type: orm, label: Engines }
             public: true
+
+    admin.shell:
+            class: AppBundle\Admin\ShellAdmin
+            arguments: [~, AppBundle\Entity\Shell, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, label: Shells }
+            public: true

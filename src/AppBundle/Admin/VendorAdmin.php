@@ -23,4 +23,9 @@ class VendorAdmin extends AbstractAdmin
     {
         $list->addIdentifier('country');
     }
+
+    public function toString($object)
+    {
+        return $object->getCountry();
+    }
 }
