@@ -3,6 +3,8 @@ services:
         class: 'AppBundle\Services\FileUploaderService'
         arguments:
             - '%uploads_directory%'
+    fixture_loader:
+        class: 'AppBundle\Services\FixturesLoaderService'
     image_upload_listener:
         class: 'AppBundle\EventListener\ImageUploadListener'
         arguments:

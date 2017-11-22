@@ -6,18 +6,10 @@ use AppBundle\Entity\Roles;
 use AppBundle\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 
-class UserFixtures extends Fixture implements ContainerAwareInterface
+class UserFixtures extends Fixture
 {
-    protected $container;
-
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
     public function load(ObjectManager $manager)
     {
         $users = [
@@ -38,6 +30,7 @@ class UserFixtures extends Fixture implements ContainerAwareInterface
             foreach ($userProperties as $userPropertyName => $userPropertyValue) {
                 switch ($userPropertyName) {
                     case 'password':
+                        /** @var EncoderFactory $encoderFactory */
                         $encoderFactory = $this->container->get('security.encoder_factory');
                         $encoder = $encoderFactory->getEncoder($userEntity);
                         $encodedPassword = $encoder->encodePassword($userPropertyValue, '');

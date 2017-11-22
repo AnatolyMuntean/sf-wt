@@ -3,6 +3,7 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Engine;
+use AppBundle\Services\FixturesLoaderService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -10,32 +11,9 @@ class EngineFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $engines = [
-            'Maybach HL62TR' => [
-                'horsepower' => '140',
-                'displacement' => '6191',
-                'type' => 'S6',
-                'vendor' => 'Germany',
-            ],
-            'Maybach HL230' => [
-                'horsepower' => '650',
-                'displacement' => '23000',
-                'type' => 'V12',
-                'vendor' => 'Germany',
-            ],
-            'Maybach HL230 P30' => [
-                'horsepower' => '700',
-                'displacement' => '23095',
-                'type' => 'V12',
-                'vendor' => 'Germany',
-            ],
-            'MB 517' => [
-                'horsepower' => '1200',
-                'displacement' => '42350',
-                'type' => 'V12',
-                'vendor' => 'Germany',
-            ],
-        ];
+        /** @var FixturesLoaderService $fixtureLoader */
+        $fixtureLoader = $this->container->get('fixture_loader');
+        $engines = $fixtureLoader->load('engines.yml');
 
         foreach ($engines as $engineName => $engineProperties) {
             $engineEntity = new Engine();

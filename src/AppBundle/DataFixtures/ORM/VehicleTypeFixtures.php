@@ -3,6 +3,7 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\VehicleType;
+use AppBundle\Services\FixturesLoaderService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -10,16 +11,9 @@ class VehicleTypeFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $vehicleTypes = [
-            'Light tank',
-            'Medium tank',
-            'Heavy tank',
-            'Super-heavy tank',
-            'Tank destroyer',
-            'Assault gun',
-            'Self-propelled anti-aircraft gun',
-            'Self-propelled artillery',
-        ];
+        /** @var FixturesLoaderService $fixtureLoader */
+        $fixtureLoader = $this->container->get('fixture_loader');
+        $vehicleTypes = $fixtureLoader->load('vehicle_types.yml');
 
         foreach ($vehicleTypes as $vehicleType) {
             $vehicleTypeEntity = new VehicleType();
