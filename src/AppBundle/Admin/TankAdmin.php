@@ -20,27 +20,21 @@ class TankAdmin extends AbstractAdmin
     {
         $form
             ->add('name', 'text')
-            ->add('type', EntityType::class, [
-                'class' => VehicleType::class,
-                'choice_label' => 'name',
+            ->add('type', 'sonata_type_model', [
+                'property' => 'name',
             ])
-            ->add('vendor', EntityType::class, [
-                'class' => Vendor::class,
-                'choice_label' => 'country',
+            ->add('vendor', 'sonata_type_model', [
+                'property' => 'country',
             ])
-            ->add('guns', EntityType::class, [
-                'class' => Gun::class,
+            ->add('guns', 'sonata_type_model', [
+                'property' => 'name',
                 'multiple' => true,
-                'choice_label' => 'name',
             ])
-            ->add('engine', EntityType::class, [
-                'class' => Engine::class,
-                'choice_label' => 'name',
-                'required' => false,
+            ->add('engine', 'sonata_type_model', [
+                'property' => 'name',
             ])
-            ->add('size', EntityType::class, [
-                'class' => Size::class,
-                'choice_label' => 'name',
+            ->add('size', 'sonata_type_model', [
+                'property' => 'name',
                 'required' => false,
             ])
             ->add('catalogue_name')

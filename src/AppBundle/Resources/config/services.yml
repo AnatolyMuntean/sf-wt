@@ -37,3 +37,9 @@ services:
             tags:
                 - { name: sonata.admin, manager_type: orm, label: Sizes }
             public: true
+    admin.gun:
+            class: AppBundle\Admin\GunAdmin
+            arguments: [~, AppBundle\Entity\Gun, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, label: Guns }
+            public: true
