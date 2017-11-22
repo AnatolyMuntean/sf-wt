@@ -31,7 +31,7 @@ class TankAdmin extends AbstractAdmin
             ->add('guns', EntityType::class, [
                 'class' => Gun::class,
                 'multiple' => true,
-                'choice_label' => 'name'
+                'choice_label' => 'name',
             ])
             ->add('engine', EntityType::class, [
                 'class' => Engine::class,
@@ -41,7 +41,7 @@ class TankAdmin extends AbstractAdmin
             ->add('size', EntityType::class, [
                 'class' => Size::class,
                 'choice_label' => 'name',
-                'required' => false
+                'required' => false,
             ])
             ->add('catalogue_name')
             ->add('original_name')

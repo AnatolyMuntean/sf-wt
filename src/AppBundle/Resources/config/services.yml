@@ -31,3 +31,9 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: Tanks }
         public: true
+    admin.size:
+            class: AppBundle\Admin\SizeAdmin
+            arguments: [~, AppBundle\Entity\Size, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, label: Sizes }
+            public: true
