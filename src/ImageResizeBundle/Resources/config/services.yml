@@ -1,0 +1,3 @@
+services:
+    image_resizer:
+        class: 'ImageResizeBundle\Services\ImageResizeService'

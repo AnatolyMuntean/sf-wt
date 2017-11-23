@@ -75,3 +75,9 @@ sonata_block:
     blocks:
         sonata.admin.block.admin_list:
             contexts: [admin]
+
+image_resize:
+    image_storage: ~
+    jpeg_quality: 95
+    png_compression_level: 2
+    aspect_precision: 3
