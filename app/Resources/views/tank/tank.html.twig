@@ -26,10 +26,6 @@
             </span>
         </div>
         <div>
-            <span>HP/t (ratio): </span>
-            <span>~{{ tank.engine.horsepower // (tank.weight / 1000) }}</span>
-        </div>
-        <div>
             <span>Catalogue name:</span>
             <span>{{ tank.cataloguename }}</span>
         </div>
@@ -38,8 +34,8 @@
             <span>{{ tank.originalname }}</span>
         </div>
         <div>
-            <span>Weight:</span>
-            <span>{{ tank.weight / 1000 }} (t.)</span>
+            <span>Weight (tonnes):</span>
+            <span>{{ tank.weight / 1000 }} </span>
         </div>
         {% if tank.description %}
             <div>

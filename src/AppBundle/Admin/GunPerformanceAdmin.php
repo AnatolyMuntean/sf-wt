@@ -60,6 +60,6 @@ class GunPerformanceAdmin extends AbstractAdmin
 
     public function toString($object)
     {
-        $object->getName();
+        return $object->getName();
     }
 }

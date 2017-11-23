@@ -2,17 +2,12 @@
 
 namespace AppBundle\Admin;
 
-use AppBundle\Entity\Engine;
-use AppBundle\Entity\Gun;
-use AppBundle\Entity\Size;
 use AppBundle\Entity\Tank;
-use AppBundle\Entity\VehicleType;
-use AppBundle\Entity\Vendor;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Sonata\CoreBundle\Model\Metadata;
 
 class TankAdmin extends AbstractAdmin
 {
@@ -40,7 +35,12 @@ class TankAdmin extends AbstractAdmin
             ->add('catalogue_name')
             ->add('original_name')
             ->add('weight', 'integer')
-            ->add('description', 'textarea');
+            ->add('imagefile', 'file', [
+                'required' => false,
+            ])
+            ->add('description', 'textarea', [
+                'required' => false,
+            ]);
     }
 
     protected function configureDatagridFilters(DatagridMapper $filter)
@@ -60,6 +60,12 @@ class TankAdmin extends AbstractAdmin
             ->add('vendor.country', null, [
                 'label' => 'Vendor',
             ]);
+    }
+
+    public function getObjectMetadata($object)
+    {
+        $imageUrl = '/uploads/'.$object->getImage();
+        return new Metadata($object->getName(), $object->getOriginalname(), $imageUrl);
     }
 
     /**

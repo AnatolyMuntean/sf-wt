@@ -7,6 +7,7 @@
     engine: 'Maybach HL62TR'
     vendor: 'Germany'
     type: 'Light tank'
+    imagefile: 'pz-ii.jpg'
 'Tiger I':
     guns:
         - '8.8 cm KwK 36 L/56'
@@ -16,6 +17,7 @@
     engine: 'Maybach HL230'
     vendor: 'Germany'
     type: 'Heavy tank'
+    imagefile: 'tiger-h1.jpg'
 'Tiger II':
     guns:
         - '8.8 cm KwK 43 L/71'
@@ -25,6 +27,7 @@
     engine: 'Maybach HL230 P30'
     vendor: 'Germany'
     type: 'Heavy tank'
+    imagefile: 'tiger-ii.jpg'
 'Maus':
     guns:
         - '7.5 cm KwK 37'
@@ -35,3 +38,4 @@
     engine: 'MB 517'
     vendor: 'Germany'
     type: 'Super-heavy tank'
+    imagefile: 'maus.png'

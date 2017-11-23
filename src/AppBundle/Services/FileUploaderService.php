@@ -2,6 +2,7 @@
 
 namespace AppBundle\Services;
 
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileUploaderService
@@ -15,7 +16,7 @@ class FileUploaderService
 
     public function upload(UploadedFile $file)
     {
-        $fileName = md5(uniqid()).'.'.$file->guessExtension();
+        $fileName = $this->getFilename($file);
 
         $file->move(
             $this->getUploadsDirectory(),
@@ -23,6 +24,10 @@ class FileUploaderService
         );
 
         return $fileName;
+    }
+
+    public function getFilename(File $file) {
+        return md5(uniqid()).'.'.$file->guessExtension();
     }
 
     public function getUploadsDirectory()

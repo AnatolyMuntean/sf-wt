@@ -408,7 +408,7 @@ class Tank implements UploadableInterface, SluggableInterface
         // during image upload.
         // This will be anyway overridden in the EventListener.
         if ($imageFile) {
-            $this->setImage(md5(uniqid().'.'.$imageFile->guessExtension()));
+            $this->setImage(md5(uniqid()).'.'.$imageFile->guessExtension());
         }
     }
 

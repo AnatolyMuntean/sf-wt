@@ -5,12 +5,18 @@ namespace AppBundle\DataFixtures\ORM;
 use AppBundle\Entity\Engine;
 use AppBundle\Entity\Gun;
 use AppBundle\Entity\Tank;
+use AppBundle\Services\FileUploaderService;
 use AppBundle\Services\FixturesLoaderService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class TanksFixtures extends Fixture
 {
+    const IMAGE_DIR = __DIR__.'/../../Resources/fixtures/images/';
+
     public function load(ObjectManager $manager)
     {
         /** @var FixturesLoaderService $fixtureLoader */
@@ -52,6 +58,10 @@ class TanksFixtures extends Fixture
                         $vehicleTypeEntity = $this->getReference($tankPropertyValue);
                         $tankEntity->setType($vehicleTypeEntity);
                         break;
+                    case 'imagefile':
+                        $fileName = $this->fakeUpload($tankPropertyValue);
+                        $tankEntity->setImage($fileName);
+                        break;
                 }
             }
 
@@ -60,6 +70,23 @@ class TanksFixtures extends Fixture
         }
 
         $manager->flush();
+    }
+
+    private function fakeUpload($fileName)
+    {
+        $fileSystem = new Filesystem();
+        $file = new File(self::IMAGE_DIR.$fileName);
+
+        /** @var FileUploaderService $fileUploader */
+        $fileUploader = $this->container->get('file_uploader');
+        $fileName = $fileUploader->getFilename($file);
+
+        $fileSystem->copy(
+            $file->getRealPath(),
+            $fileUploader->getUploadsDirectory().'/'.$fileName
+        );
+
+        return $fileName;
     }
 
     public function getDependencies()
