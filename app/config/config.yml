@@ -77,7 +77,7 @@ sonata_block:
             contexts: [admin]
 
 image_resize:
-    image_storage: ~
+    image_storage: '%uploads_directory%'
     jpeg_quality: 95
     png_compression_level: 2
     aspect_precision: 3

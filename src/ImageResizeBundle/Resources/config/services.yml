@@ -1,3 +1,5 @@
 services:
     image_resizer:
         class: 'ImageResizeBundle\Services\ImageResizeService'
+        arguments:
+            - '%image_resize%'
