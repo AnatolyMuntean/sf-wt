@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="shells")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ShellRepository")
  */
-class Shell implements UploadableInterface
+class Shell implements UploadableInterface, SluggableInterface
 {
     /**
      * @var int
@@ -65,6 +65,13 @@ class Shell implements UploadableInterface
      * @ORM\ManyToMany(targetEntity="Gun", mappedBy="ammo")
      */
     private $guns;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     */
+    private $slug;
 
     /**
      * Constructor
@@ -246,5 +253,29 @@ class Shell implements UploadableInterface
     public function getPerformanceData()
     {
         return $this->performance_data;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Shell
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

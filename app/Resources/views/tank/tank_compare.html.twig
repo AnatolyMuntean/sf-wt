@@ -1,11 +1,18 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    {% if tank_views|length > 0 %}
+    {% if tanks|length > 0 %}
         <div class="row">
-            {% for tank_view in tank_views %}
+            {% for tank in tanks %}
                 <div class="col-sm-4">
-                    {{ tank_view|raw }}
+                    <div>
+                        <img class="img-responsive img-thumbnail" src="{{ path('image_resize', {'size': '360x210', 'filename': tank.image}) }}">
+                    </div>
+                    {% if tank.description %}
+                        <div>
+                            <p>{{ tank.description }}</p>
+                        </div>
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>

@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class EngineController extends Controller
 {
     /**
-     * @Route("/engine/{engine}/view", name="engine_page")
+     * @Route("/engine/{slug}/view", name="engine_page")
      */
     public function engineViewAction(Request $request, Engine $engine)
     {

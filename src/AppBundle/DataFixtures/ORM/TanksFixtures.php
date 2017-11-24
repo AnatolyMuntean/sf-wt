@@ -9,6 +9,7 @@ use AppBundle\Services\FileUploaderService;
 use AppBundle\Services\FixturesLoaderService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Faker\Factory;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -22,10 +23,12 @@ class TanksFixtures extends Fixture
         /** @var FixturesLoaderService $fixtureLoader */
         $fixtureLoader = $this->container->get('fixture_loader');
         $tanks = $fixtureLoader->load('tanks.yml');
+        $faker = Factory::create();
 
         foreach ($tanks as $tankName => $tankProperties) {
             $tankEntity = new Tank();
             $tankEntity->setName($tankName);
+            $tankEntity->setDescription($faker->text());
 
             foreach ($tankProperties as $tankPropertyName => $tankPropertyValue) {
                 switch ($tankPropertyName) {

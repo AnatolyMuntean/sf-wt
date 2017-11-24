@@ -21,7 +21,7 @@
                 </li>
                 {% if app.session.get('compare-tanks')|length > 0 %}
                     <li class="{% if app.request.attributes.get('_route') == 'tank_compare' %}active{% endif %}">
-                        <a href="{{ path('tank_compare') }}">Compare tanks ({{ app.session.get('compare-tanks')|length }})</a>
+                        <a href="{{ path('tank_compare') }}">Compare tanks <span class="badge">{{ app.session.get('compare-tanks')|length }}</span></a>
                     </li>
                 {% endif %}
             </ul>
@@ -48,7 +48,7 @@
     {% block body %}{% endblock %}
 </div>
 {% block javascripts %}{% endblock %}
-{#<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>#}
-{#<script src="{{ asset('js/bootstrap.min.js') }}"></script>#}
+<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </body>
 </html>

@@ -1,7 +1,12 @@
 <div class="row">
-    <div class="col-sm-12">
-        <img class="img-responsive" src="{{ path('image_resize', {'size': '0x200', 'filename': tank.image}) }}">
+    <div class="col-sm-12 col-md-4">
+        <img class="img-responsive img-thumbnail" src="{{ path('image_resize', {'size': '360x210', 'filename': tank.image}) }}">
     </div>
+    {% if tank.description %}
+        <div class="col-sm-12 col-md-8">
+            <p>{{ tank.description }}</p>
+        </div>
+    {% endif %}
 </div>
 <div class="row">
     <div class="col-sm-12">
@@ -9,77 +14,53 @@
             <span>Name:</span>
             <span><a href="{{ path('tank_page', {'slug': tank.slug}) }}">{{ tank.name }}</a></span>
         </div>
-        {% if tank.guns|length > 0 %}
-        <div>
-            <span>Armed with:</span>
-            {% for gun in tank.guns %}
-                <div>
-                    <span>
-                        <a href="{{ path('gun_page', {'slug': gun.slug}) }}">{{ gun.name }}</a>
-                    </span>
-                </div>
-            {% endfor %}
-        </div>
-        {% endif %}
-        {% if tank.engine %}
-        <div>
-            <span>Engine:</span>
-            <span>
-                <a href="{{ path('engine_page', {'engine': tank.engine.id}) }}">{{ tank.engine.name }}</a>
-            </span>
-        </div>
-        {% endif %}
         {% if tank.cataloguename %}
-        <div>
-            <span>Catalogue name:</span>
-            <span>{{ tank.cataloguename }}</span>
-        </div>
-        {% endif %}
-        {% if tank.originalname %}
-        <div>
-            <span>Original name:</span>
-            <span>{{ tank.originalname }}</span>
-        </div>
-        {% endif %}
-        {% if tank.weight %}
-        <div>
-            <span>Weight (tonnes):</span>
-            <span>{{ tank.weight / 1000 }} </span>
-        </div>
-        {% endif %}
-        {% if tank.description %}
             <div>
-                <span>Description:</span>
-                <span>{{ tank.description }}</span>
+                <span>Catalogue name:</span>
+                <span>{{ tank.cataloguename }}</span>
             </div>
         {% endif %}
+        {% if tank.originalname %}
+            <div>
+                <span>Original name:</span>
+                <span>{{ tank.originalname }}</span>
+            </div>
+        {% endif %}
+        <div class="panel-group" id="accordion-{{ tank.slug }}">
+            {% if tank.guns|length > 0 %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>
+                            <a data-toggle="collapse" data-parent="#accordion-{{ tank.slug }}" href="#weaponry-{{ tank.slug }}">Weaponry</a>
+                        </h4>
+                    </div>
+                    <div id="weaponry-{{ tank.slug }}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            {% for gun in tank.guns %}
+                                <p><a href="{{ path('gun_page', {'slug': gun.slug}) }}">{{ gun.name }}</a></p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>
+                        <a data-toggle="collapse" data-parent="#accordion-{{ tank.slug }}" href="#technical-{{ tank.slug }}">Technical data</a>
+                    </h4>
+                </div>
+                <div id="technical-{{ tank.slug }}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        {% if tank.engine %}
+                            <p>Engine: <a href="{{ path('engine_page', {'slug': tank.engine.slug}) }}">{{ tank.engine.name }}</a></p>
+                        {% endif %}
+                        {% if tank.weight %}
+                            <p>Weight (tonnes): {{ tank.weight / 1000 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-{% if tank.guns|length > 0 %}
-    {% for gun in tank.guns %}
-        {% include "gun/gun_performance.html.twig" %}
-    {% endfor %}
-{% endif %}
-{% if tank.size %}
-<div class="row">
-    <div class="col-sm-12">
-        <span>Size (mm.):</span>
-        <table class="table table-bordered">
-            <tr>
-                <th>Height</th>
-                <th>Width</th>
-                <th>Length</th>
-                <th>Length w/ gun</th>
-                <th>Clearance</th>
-            </tr>
-            <tr>
-                <td>{{ tank.size.height }}</td>
-                <td>{{ tank.size.width }}</td>
-                <td>{{ tank.size.length }}</td>
-                <td>{{ tank.size.lengthwithgun }}</td>
-                <td>{{ tank.size.clearance }}</td>
-            </tr>
-        </table>
-    </div>
-</div>
-{% endif %}

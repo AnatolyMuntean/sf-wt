@@ -67,16 +67,9 @@ class TankController extends Controller
             ->getQuery()
             ->execute();
 
-        $tankViews = [];
-        foreach ($tanks as $tank) {
-            $tankViews[] = $this->renderView('tank/tank.html.twig', [
-                'tank' => $tank,
-            ]);
-        }
-
         return $this->render('tank/tank_compare.html.twig', [
             'header' => 'Comparing: '.$header,
-            'tank_views' => $tankViews,
+            'tanks' => $tanks,
         ]);
     }
 

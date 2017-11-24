@@ -27,7 +27,7 @@ class DefaultController extends Controller
         $vehicleTypes = $entityManager->getRepository(VehicleType::class)->findAll();
 
         return $this->render('main/index.html.twig', [
-            'header' => 'List of WWII tanks and guns',
+            'header' => 'WWII Armory',
             'tanks' => $tanks,
             'vendors' => $vendors,
             'vehicle_types' => $vehicleTypes,
