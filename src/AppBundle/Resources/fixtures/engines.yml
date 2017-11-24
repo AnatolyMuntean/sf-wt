@@ -3,6 +3,11 @@
     displacement: 6191
     type: 'S6'
     vendor: 'Germany'
+'Maybach HL62TR':
+    horsepower: 140
+    displacement: 6191
+    type: 'S6'
+    vendor: 'Germany'
 'Maybach HL230':
     horsepower: 650
     displacement: 23000

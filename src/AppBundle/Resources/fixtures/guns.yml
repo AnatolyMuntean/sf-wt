@@ -41,3 +41,38 @@
     caliber: 128
     ammo: ['PzGr. 39/43', 'PzGr. 40/43', Hl.39/3]
     vendor: Germany
+'4.7 cm Pak (t)':
+    shell: 'QF 47×405 mm. R'
+    caliber: 47
+    ammo: []
+    vendor: 'Germany'
+'schweres Infanterie Geschütz 33':
+    shell: ''
+    caliber: 149.1
+    ammo: []
+    vendor: 'Germany'
+'7.5 cm Pak 40':
+    shell: 'QF 75 × 714 mm. R'
+    caliber: 75
+    ammo: ['PzGr. 39', 'PzGr. 40', 'Hl.39 HL/B']
+    vendor: 'Germany'
+'10.5 cm leFH 18':
+    shell: '105 x 155mm R'
+    caliber: 105
+    ammo: []
+    vendor: 'Germany'
+'3.7 cm KwK 34(t)':
+    shell: 'QF 37 x 268 mm. R'
+    caliber: 37.2
+    ammo: []
+    vendor: 'Germany'
+'3.7 cm KwK 38(t) L/47.8':
+    shell: 'QF 37 x 268 mm. R'
+    caliber: 37.2
+    ammo: []
+    vendor: 'Germany'
+'7.5 cm Pak 39 L/48':
+    shell: '75 × 495 mm. R'
+    caliber: 75
+    ammo: []
+    vendor: 'Germany'

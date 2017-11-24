@@ -39,3 +39,88 @@
     vendor: 'Germany'
     type: 'Super-heavy tank'
     imagefile: 'maus.png'
+'Panzerjäger I':
+    guns:
+        - '4.7 cm Pak (t)'
+    weight: 6400
+    vendor: Germany
+    type: 'Tank destroyer'
+    imagefile: 'pz-jag-i.jpg'
+'Sturmpanzer Bison':
+    guns:
+        - 'schweres Infanterie Geschütz 33'
+    weight: 8500
+    original_name: '15 cm sIG 33 (Sf) auf Panzerkampfwagen I Ausf B'
+    vendor: Germany
+    type: 'Assault gun'
+    imagefile: 'sturmpanzer-bison.jpg'
+'Marder II':
+    guns:
+        - '7.5 cm Pak 40'
+    weight: 10800
+#    original_name: ''
+    catalogue_name: 'Sd.Kfz. 131'
+#    engine: ''
+    vendor: Germany
+    type: 'Tank destroyer'
+    imagefile: 'marder-ii.jpg'
+'Wespe':
+    guns:
+        - '10.5 cm leFH 18'
+    weight: 11000
+    original_name: 'Leichte Feldhaubitze 18/2 auf Fahrgestell Panzerkampfwagen II (Sf.)'
+    catalogue_name: 'Sd.Kfz. 124'
+    engine: 'Maybach HL62TR'
+    vendor: Germany
+    type: 'Self-propelled artillery'
+    imagefile: 'wespe.jpg'
+'Panzerkampfwagen 35(t)':
+    guns:
+        - '3.7 cm KwK 34(t)'
+    weight: 10500
+#    original_name: ''
+#    catalogue_name: ''
+#    engine: 'Maybach HL62TR'
+    vendor: Germany
+    type: 'Light tank'
+    imagefile: 'pz35.jpg'
+'Panzerkampfwagen 38(t)':
+    guns:
+        - '3.7 cm KwK 38(t) L/47.8'
+    weight: 9850
+#    original_name: ''
+#    catalogue_name: ''
+#    engine: 'Maybach HL62TR'
+    vendor: Germany
+    type: 'Light tank'
+    imagefile: 'pz38.jpg'
+'Marder III':
+    guns:
+        - '7.5 cm Pak 40'
+    weight: 10670
+#    original_name: ''
+    catalogue_name: 'Sd. Kfz. 138'
+#    engine: 'Maybach HL62TR'
+    vendor: Germany
+    type: 'Tank destroyer'
+    imagefile: 'marder-iii.jpg'
+'Grille':
+    guns:
+        - 'schweres Infanterie Geschütz 33'
+    weight: 11500
+    original_name: '15 cm Schweres Infanteriegeschütz 33 (Sf) auf Panzerkampfwagen 38(t) Ausf. H'
+    catalogue_name: 'Sd. Kfz. 138'
+#    engine: 'Maybach HL62TR'
+    vendor: Germany
+    type: 'Self-propelled artillery'
+    imagefile: 'grille.jpg'
+'Hetzer':
+    guns:
+        - '7.5 cm Pak 39 L/48'
+    weight: 15750
+    original_name: 'Jagdpanzer 38'
+    catalogue_name: 'Sd. Kfz. 138/2'
+#    engine: 'Maybach HL62TR'
+    vendor: Germany
+    type: 'Tank destroyer'
+    imagefile: 'hetzer.jpg'
