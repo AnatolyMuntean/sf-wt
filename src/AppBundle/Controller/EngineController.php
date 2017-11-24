@@ -4,12 +4,10 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Engine;
 use AppBundle\Entity\Tank;
-use AppBundle\Form\EngineType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class EngineController extends Controller
 {

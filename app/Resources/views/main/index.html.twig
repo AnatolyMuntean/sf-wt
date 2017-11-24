@@ -21,7 +21,7 @@
                                             {% for tank in tanks %}
                                                 {% if tank.vendor.id == vendor.id and tank.type.name == vehicle_type.name %}
                                                     <li>
-                                                        <a href="{{ path('tank_page', {'tank': tank.id}) }}">{{ tank.name }}</a>
+                                                        <a href="{{ path('tank_page', {'slug': tank.slug}) }}">{{ tank.name }}</a>
                                                     </li>
                                                 {% endif %}
                                             {% endfor %}

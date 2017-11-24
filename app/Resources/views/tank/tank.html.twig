@@ -7,7 +7,7 @@
     <div class="col-sm-12">
         <div>
             <span>Name:</span>
-            <span><a href="{{ path('tank_page', {'tank': tank.id}) }}">{{ tank.name }}</a></span>
+            <span><a href="{{ path('tank_page', {'slug': tank.slug}) }}">{{ tank.name }}</a></span>
         </div>
         {% if tank.guns|length > 0 %}
         <div>
@@ -15,7 +15,7 @@
             {% for gun in tank.guns %}
                 <div>
                     <span>
-                        <a href="{{ path('gun_page', {'gun': gun.id}) }}">{{ gun.name }}</a>
+                        <a href="{{ path('gun_page', {'slug': gun.slug}) }}">{{ gun.name }}</a>
                     </span>
                 </div>
             {% endfor %}

@@ -2,18 +2,11 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Engine;
-use AppBundle\Entity\Gun;
 use AppBundle\Entity\Tank;
-use AppBundle\Form\TankType;
-use AppBundle\Services\FileUploaderService;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class TankController extends Controller
 {
@@ -21,7 +14,7 @@ class TankController extends Controller
     const COMPARE_LIMIT = 3;
 
     /**
-     * @Route("/tank/{tank}/view", name="tank_page")
+     * @Route("/tank/{slug}/view", name="tank_page")
      */
     public function tankViewAction(Request $request, Tank $tank)
     {
@@ -32,7 +25,7 @@ class TankController extends Controller
     }
 
     /**
-     * @Route("/tank/{tank}/compare", name="tank_compare_add")
+     * @Route("/tank/{slug}/compare", name="tank_compare_add")
      */
     public function tankAddToCompareAction(Request $request, Tank $tank)
     {
@@ -52,7 +45,7 @@ class TankController extends Controller
         }
 
         return $this->redirectToRoute('tank_page', [
-            'tank' => $tank->getId(),
+            'slug' => $tank->getSlug(),
         ]);
     }
 
