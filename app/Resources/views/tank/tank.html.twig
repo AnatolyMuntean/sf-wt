@@ -9,6 +9,7 @@
             <span>Name:</span>
             <span><a href="{{ path('tank_page', {'tank': tank.id}) }}">{{ tank.name }}</a></span>
         </div>
+        {% if tank.guns|length > 0 %}
         <div>
             <span>Armed with:</span>
             {% for gun in tank.guns %}
@@ -19,24 +20,33 @@
                 </div>
             {% endfor %}
         </div>
+        {% endif %}
+        {% if tank.engine %}
         <div>
             <span>Engine:</span>
             <span>
                 <a href="{{ path('engine_page', {'engine': tank.engine.id}) }}">{{ tank.engine.name }}</a>
             </span>
         </div>
+        {% endif %}
+        {% if tank.cataloguename %}
         <div>
             <span>Catalogue name:</span>
             <span>{{ tank.cataloguename }}</span>
         </div>
+        {% endif %}
+        {% if tank.originalname %}
         <div>
             <span>Original name:</span>
             <span>{{ tank.originalname }}</span>
         </div>
+        {% endif %}
+        {% if tank.weight %}
         <div>
             <span>Weight (tonnes):</span>
             <span>{{ tank.weight / 1000 }} </span>
         </div>
+        {% endif %}
         {% if tank.description %}
             <div>
                 <span>Description:</span>
@@ -50,6 +60,7 @@
         {% include "gun/gun_performance.html.twig" %}
     {% endfor %}
 {% endif %}
+{% if tank.size %}
 <div class="row">
     <div class="col-sm-12">
         <span>Size (mm.):</span>
@@ -71,3 +82,4 @@
         </table>
     </div>
 </div>
+{% endif %}
