@@ -1,41 +1,55 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
-        <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
-    </head>
-    <body>
-        <div class="container">
-            <span><a href="{{ path('homepage') }}">Home</a></span>
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <span>Hi, {{ app.user.username }}!&nbsp;<a href="{{ path('logout') }}">Logout</a></span>
-            {% else %}
-                <span><a href="{{ path('login') }}">Login</a></span>
-            {% endif %}
-
-            {% if app.session.get('compare-tanks')|length > 0 %}
-                <span><a href="{{ path('tank_compare') }}">Compare tanks ({{ app.session.get('compare-tanks')|length }})</a></span>
-            {% endif %}
-            <h1>{{ header }}</h1>
-            {% for label, messages  in app.flashes %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ label }}">
-                        <span>{{ message }}</span>
-                    </div>
-                {% endfor %}
-            {% endfor %}
-            {% block edit %}{% endblock %}
-            {% block body %}{% endblock %}
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li class="{% if app.request.attributes.get('_route') == 'homepage' %}active{% endif %}">
+                    <a href="{{ path('homepage') }}">Home</a>
+                </li>
+                {% if app.session.get('compare-tanks')|length > 0 %}
+                    <li class="{% if app.request.attributes.get('_route') == 'tank_compare' %}active{% endif %}">
+                        <a href="{{ path('tank_compare') }}">Compare tanks ({{ app.session.get('compare-tanks')|length }})</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="{% if app.request.attributes.get('_route') == 'login' %}active{% endif %}">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <span>Hi, {{ app.user.username }}!</span>
+                        <a href="{{ path('logout') }}">Logout</a>
+                    {% else %}
+                        <a href="{{ path('login') }}">Login</a>
+                    {% endif %}
+                </li>
+            </ul>
         </div>
-        {% block javascripts %}{% endblock %}
-        {#<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>#}
-        {#<script src="{{ asset('js/bootstrap.min.js') }}"></script>#}
-    </body>
+    </nav>
+    <h1>{{ header }}</h1>
+    {% for label, messages  in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                <span>{{ message }}</span>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% block edit %}{% endblock %}
+    {% block body %}{% endblock %}
+</div>
+{% block javascripts %}{% endblock %}
+{#<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>#}
+{#<script src="{{ asset('js/bootstrap.min.js') }}"></script>#}
+</body>
 </html>
