@@ -64,7 +64,14 @@ class TankAdmin extends AbstractAdmin
 
     public function getObjectMetadata($object)
     {
-        $imageUrl = '/uploads/'.$object->getImage();
+        $imageUrl = $this
+            ->getConfigurationPool()
+            ->getContainer()
+            ->get('router')
+            ->generate('image_resize', [
+                'size' => '244x182',
+                'filename' => $object->getImage(),
+            ]);
         return new Metadata($object->getName(), $object->getOriginalname(), $imageUrl);
     }
 
