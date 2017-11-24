@@ -48,22 +48,21 @@ class Tank implements UploadableInterface, SluggableInterface
     /**
      * @var integer
      *
-     * @ORM\Column(name="weight", type="integer")
-     * @Assert\GreaterThan(0)
+     * @ORM\Column(name="weight", type="integer", nullable=true)
      */
     private $weight;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="original_name", type="string")
+     * @ORM\Column(name="original_name", type="string", nullable=true)
      */
     private $original_name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="catalogue_name", type="string")
+     * @ORM\Column(name="catalogue_name", type="string", nullable=true)
      */
     private $catalogue_name;
 
